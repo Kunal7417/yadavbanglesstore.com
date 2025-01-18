@@ -1683,7 +1683,7 @@ address strong, address b {
 }
 
 #banner-area #banner-carousel .single-carousel-wrap:after {
-    background-color: rgba(244, 245, 247, 0.7);
+    background-color: rgba(239, 247, 196, 0.7);
     content: '';
     position: absolute;
     left: 0;
