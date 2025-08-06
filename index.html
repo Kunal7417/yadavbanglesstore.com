@@ -1,1499 +1,1906 @@
 <!DOCTYPE html>
-<html class="no-js" lang="zxx">
-
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="meta description">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Yadav Bangles Store - Your premium beauty and traditional accessories destination in Jaiganj, Aligarh. Shop bangles, cosmetics, poshaks & more.">
+    <meta name="keywords" content="bangles, churiya, poshak, cosmetics, jewelry, festival items, beauty products, Aligarh, Jaiganj, yadav bangles">
+    <title>Yadav Bangles Store | Premium Beauty & Traditional Accessories</title>
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <title>YADAV BANGLES STORE</title>
+        :root {
+            --primary-color: #e91e63;
+            --primary-dark: #c2185b;
+            --secondary-color: #ff4081;
+            --accent-color: #ffc107;
+            --success-color: #4caf50;
+            --warning-color: #ff9800;
+            --error-color: #f44336;
+            --dark-color: #212121;
+            --light-color: #fafafa;
+            --grey-100: #f5f5f5;
+            --grey-200: #eeeeee;
+            --grey-300: #e0e0e0;
+            --grey-400: #bdbdbd;
+            --grey-500: #9e9e9e;
+            --grey-600: #757575;
+            --grey-700: #616161;
+            --grey-800: #424242;
+            --white: #ffffff;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+            --shadow-xl: 0 20px 25px rgba(0,0,0,0.15);
+            --border-radius: 8px;
+            --transition: all 0.3s ease;
+        }
 
-    <!--=== Favicon ===-->
-    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon"/>
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: var(--white);
+        }
 
-    <!--== Google Fonts ==-->
-    <link rel="stylesheet" type="text/css"
-          href="https://fonts.googleapis.com/css?family=Droid+Serif:400,400i,700,700i"/>
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Montserrat:400,700"/>
-    <link rel="stylesheet" type="text/css"
-          href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i"/>
+        /* Header Styles - Nykaa inspired */
+        .header {
+            position: sticky;
+            top: 0;
+            background: var(--white);
+            box-shadow: var(--shadow-sm);
+            z-index: 1000;
+            border-bottom: 1px solid var(--grey-200);
+        }
 
-    <!--=== Bootstrap CSS ===-->
-    <link href="assets/css/vendor/bootstrap.min.css" rel="stylesheet">
-    <!--=== Font-Awesome CSS ===-->
-    <link href="assets/css/vendor/font-awesome.css" rel="stylesheet">
-    <!--=== Plugins CSS ===-->
-    <link href="assets/css/plugins.css" rel="stylesheet">
-    <!--=== Main Style CSS ===-->
-    <link href="assets/css/style.css" rel="stylesheet">
+        .top-bar {
+            background: var(--grey-100);
+            padding: 8px 0;
+            font-size: 12px;
+            color: var(--grey-700);
+            text-align: center;
+        }
 
-    <!-- Modernizer JS -->
-    <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
+        .header-main {
+            padding: 12px 0;
+        }
 
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-    <!--[if lt IE 9]>
-    <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+        .header-content {
+            display: grid;
+            grid-template-columns: 200px 1fr auto;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo i {
+            font-size: 28px;
+        }
+
+        .search-container {
+            position: relative;
+            max-width: 500px;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 12px 50px 12px 16px;
+            border: 2px solid var(--grey-300);
+            border-radius: 25px;
+            font-size: 14px;
+            transition: var(--transition);
+            background: var(--grey-100);
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background: var(--white);
+            box-shadow: 0 0 0 3px rgba(233, 30, 99, 0.1);
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 4px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--primary-color);
+            border: none;
+            padding: 10px 16px;
+            border-radius: 20px;
+            color: var(--white);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .search-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .header-action {
+            position: relative;
+            color: var(--dark-color);
+            text-decoration: none;
+            padding: 8px;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .header-action:hover {
+            background: var(--grey-100);
+            color: var(--primary-color);
+        }
+
+        .header-action i {
+            font-size: 18px;
+        }
+
+        .badge {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            background: var(--error-color);
+            color: var(--white);
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        /* Navigation */
+        .nav-bar {
+            background: var(--white);
+            border-bottom: 1px solid var(--grey-200);
+            padding: 0;
+        }
+
+        .nav-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            padding: 16px 0;
+        }
+
+        .nav-link {
+            color: var(--dark-color);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            padding: 8px 16px;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary-color);
+            background: rgba(233, 30, 99, 0.05);
+        }
+
+        /* Hero Banner */
+        .hero-banner {
+            background: linear-gradient(135deg, rgba(233, 30, 99, 0.1) 0%, rgba(255, 64, 129, 0.05) 100%);
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--dark-color);
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            color: var(--grey-600);
+            margin-bottom: 32px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        /* Category Cards */
+        .categories-section {
+            padding: 80px 0;
+            background: var(--grey-100);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            font-size: 16px;
+            color: var(--grey-600);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .category-card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .category-image {
+            height: 200px;
+            background: var(--grey-200);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .category-card:hover .category-image img {
+            transform: scale(1.05);
+        }
+
+        .category-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.7));
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+        }
+
+        .category-info {
+            padding: 24px;
+            text-align: center;
+        }
+
+        .category-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 8px;
+        }
+
+        .category-description {
+            font-size: 14px;
+            color: var(--grey-600);
+            margin-bottom: 16px;
+        }
+
+        .category-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        /* Products Section */
+        .products-section {
+            padding: 80px 0;
+        }
+
+        .products-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 12px 24px;
+            border: 2px solid var(--grey-300);
+            background: var(--white);
+            color: var(--grey-700);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .tab-btn.active,
+        .tab-btn:hover {
+            background: var(--primary-color);
+            color: var(--white);
+            border-color: var(--primary-color);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .product-image {
+            height: 250px;
+            background: var(--grey-100);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .product-actions {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-actions {
+            opacity: 1;
+        }
+
+        .action-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: none;
+            background: var(--white);
+            color: var(--grey-700);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .action-btn:hover {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-bottom: 12px;
+        }
+
+        .star {
+            color: var(--accent-color);
+            font-size: 12px;
+        }
+
+        .rating-text {
+            font-size: 12px;
+            color: var(--grey-500);
+            margin-left: 8px;
+        }
+
+        .product-price {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .current-price {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--dark-color);
+        }
+
+        .original-price {
+            font-size: 14px;
+            color: var(--grey-500);
+            text-decoration: line-through;
+        }
+
+        .discount {
+            font-size: 12px;
+            color: var(--success-color);
+            font-weight: 600;
+        }
+
+        .product-footer {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-cart {
+            flex: 1;
+            background: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 10px;
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-cart:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 80px 0;
+            background: var(--grey-100);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 32px;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 32px 24px;
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            background: rgba(233, 30, 99, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: var(--primary-color);
+            font-size: 24px;
+        }
+
+        .feature-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 12px;
+        }
+
+        .feature-description {
+            font-size: 14px;
+            color: var(--grey-600);
+            line-height: 1.5;
+        }
+
+        /* Newsletter */
+        .newsletter-section {
+            padding: 60px 0;
+            background: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .newsletter-content h3 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .newsletter-content p {
+            font-size: 16px;
+            opacity: 0.9;
+            margin-bottom: 32px;
+        }
+
+        .newsletter-form {
+            max-width: 400px;
+            margin: 0 auto;
+            display: flex;
+            gap: 12px;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: none;
+            border-radius: 25px;
+            font-size: 14px;
+        }
+
+        .newsletter-btn {
+            background: var(--white);
+            color: var(--primary-color);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .newsletter-btn:hover {
+            background: var(--grey-100);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark-color);
+            color: var(--white);
+            padding: 60px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: var(--grey-400);
+            text-decoration: none;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 8px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-icon:hover {
+            background: var(--primary-color);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--grey-700);
+            padding-top: 20px;
+            text-align: center;
+            color: var(--grey-400);
+            font-size: 14px;
+        }
+
+        /* WhatsApp Float */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 56px;
+            height: 56px;
+            background: #25d366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 24px;
+            text-decoration: none;
+            box-shadow: var(--shadow-lg);
+            z-index: 1000;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: var(--white);
+            border-radius: 16px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            padding: 24px 24px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--grey-500);
+            padding: 4px;
+        }
+
+        .modal-body {
+            padding: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark-color);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--grey-300);
+            border-radius: var(--border-radius);
+            font-size: 14px;
+            transition: var(--transition);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(233, 30, 99, 0.1);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                grid-template-columns: 1fr;
+                gap: 16px;
+                text-align: center;
+            }
+
+            .search-container {
+                order: 3;
+            }
+
+            .nav-content {
+                flex-wrap: wrap;
+                gap: 16px;
+            }
+
+            .hero-content h1 {
+                font-size: 32px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .categories-grid,
+            .products-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(233, 30, 99, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--primary-color);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 16px 24px;
+            border-radius: var(--border-radius);
+            color: var(--white);
+            font-weight: 500;
+            z-index: 3000;
+            animation: slideInRight 0.3s ease;
+            max-width: 300px;
+        }
+
+        .notification.success {
+            background: var(--success-color);
+        }
+
+        .notification.error {
+            background: var(--error-color);
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+    </style>
 </head>
 <body>
-
-<!--== Header Area Start ==-->
-<header id="header-area">
-    <div class="ruby-container">
-        <div class="row">
-            <!-- Logo Area Start -->
-            <div class="col-3 col-lg-1 col-xl-2 m-auto">
-                <a href="index.html" class="logo-area">
-                    <!-- <img src="assets/img/logo.png" alt="Logo" class="img-fluid"/> -->
-                    <h4 style="color: white;">Yadav Bangles Store</h4>
-                </a>
+    <!-- Header -->
+    <header class="header">
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <div class="container">
+                🎉 Free shipping on orders above ₹500 | Call us: +91 7417163092
             </div>
-            <!-- Logo Area End -->
-
-    <!-- Navigation Area Start -->
-    <div class="col-3 col-lg-9 col-xl-8 m-auto">
-        <div class="main-menu-wrap">
-            <nav id="mainmenu">
-                <ul>
-                    <li class="dropdown-show"><a href="index.html">Home</a>
-                        <!-- <ul class="dropdown-nav sub-dropdown">
-                            <li><a href="index.html">Home Layout 1</a></li>
-                            <li><a href="index2.html">Home Layout 2</a></li>
-                            <li><a href="index3.html">Home Layout 3</a></li>
-                            <li><a href="index4.html">Home Layout 4</a></li>
-                        </ul> -->
-                    </li>
-                    <li class="dropdown-show"><a href="#">Shop</a>
-                        <!-- <ul class="mega-menu-wrap dropdown-nav">
-                            <li class="mega-menu-item"><a href="shop.html" class="mega-item-title">Shop Layout</a>
-                                <ul>
-                                    <li><a href="shop.html">Shop Left Sidebar</a></li>
-                                    <li><a href="shop-right-sidebar.html">Shop Right Sidebar</a></li>
-                                    <li><a href="shop-left-full-wide.html">Shop Left Full Wide</a></li>
-                                    <li><a href="shop-right-full-wide.html">Shop Right Full Wide</a></li>
-                                    <li><a href="shop-full-wide.html">Shop Without Sidebar</a></li>
-                                </ul>
-                            </li>
-                            
-                            <!-- Product Categories -->
-                            <!-- <li class="mega-menu-item"><a href="single-product.html" class="mega-item-title">God Costumes (Poshaks)</a>
-                                <ul>
-                                    <li><a href="shop.html">Divine Poshaks</a></li>
-                                    <li><a href="shop.html">Traditional Outfits</a></li>
-                                    <li><a href="shop.html">Festive Poshaks</a></li>
-                                </ul>
-                            </li> -->
-
-                            <!-- <li class="mega-menu-item"><a href="single-product.html" class="mega-item-title">Cosmetics</a>
-                                <ul>
-                                    <li><a href="shop.html">Skin Care</a></li>
-                                    <li><a href="shop.html">Makeup Products</a></li>
-                                    <li><a href="shop.html">Hair Care</a></li>
-                                </ul>
-                            </li> -->
-
-                            <!-- <li class="mega-menu-item"><a href="single-product.html" class="mega-item-title">Bangles</a>
-                                <ul>
-                                    <li><a href="shop.html">Gold Bangles</a></li>
-                                    <li><a href="shop.html">Silver Bangles</a></li>
-                                    <li><a href="shop.html">Glass Bangles</a></li>
-                                    <li><a href="shop.html">Custom Bangles</a></li>
-                                </ul>
-                            </li> -->
-                            
-                            <!-- Festival Specials -->
-                            <!-- <li class="mega-menu-item"><a href="single-product.html" class="mega-item-title">Festival Specials</a>
-                                <ul>
-                                    <li><a href="shop.html">Holi Essentials</a></li>
-                                    <li><a href="shop.html">Diwali Decorations</a></li>
-                                    <li><a href="shop.html">Festival Gifts</a></li>
-                                    <li><a href="shop.html">Traditional Sweets</a></li>
-                                </ul>
-                            </li>
-                        </ul> --> 
-                    </li>
-                    <li class="dropdown-show"><a href="#">Pages</a>
-                        <!-- <ul class="dropdown-nav">
-                            <li><a href="cart.html">Shopping Cart</a></li>
-                            <li><a href="checkout.html">Checkout</a></li>
-                            <li><a href="compare.html">Compare</a></li>
-                            <li><a href="wishlist.html">Wishlist</a></li>
-                            <li><a href="login-register.html">Login & Register</a></li>
-                            <li><a href="my-account.html">My Account</a></li>
-                            <li><a href="404.html">404 Error</a></li>
-                        </ul> -->
-                    </li>
-                    <li><a href="contact.html">Contact Us</a></li>
-                </ul>
-            </nav>
         </div>
-    </div>
-    <!-- Navigation Area End -->
 
+        <!-- Main Header -->
+        <div class="header-main">
+            <div class="container">
+                <div class="header-content">
+                    <!-- Logo -->
+                    <a href="#" class="logo">
+                        <i class="fas fa-gem"></i>
+                        Yadav Bangles Store
+                    </a>
 
-            <!-- Header Right Meta Start -->
-<div class="col-6 col-lg-2 m-auto">
-    <div class="header-right-meta text-right">
-        <ul>
-            <li><a href="#" class="modal-active"><i class="fa fa-search"></i></a></li>
-            <li class="settings"><a href="#"><i class="fa fa-cog"></i></a>
-                <div class="site-settings d-block d-sm-flex">
-                    <dl class="currency">
-                        <dt>Currency</dt>
-                        <dd class="current"><a href="#">INR</a></dd>
-                        <dd><a href="#">USD</a></dd>
-                        <dd><a href="#">AUD</a></dd>
-                        <dd><a href="#">CAD</a></dd>
-                    </dl>
-
-                    <dl class="my-account">
-                        <dt>My Account</dt>
-                        <dd><a href="#">Dashboard</a></dd>
-                        <dd><a href="#">Profile</a></dd>
-                        <dd><a href="#">Sign Out</a></dd>
-                    </dl>
-
-                    <dl class="language">
-                        <dt>Language</dt>
-                        <dd class="current"><a href="#">English (US)</a></dd>
-                        <dd><a href="#">English (UK)</a></dd>
-                        <dd><a href="#">Hindi</a></dd>
-                        <dd><a href="#">Bengali</a></dd>
-                    </dl>
-                </div>
-            </li>
-            <li class="shop-cart"><a href="#"><i class="fa fa-shopping-bag"></i> <span
-                    class="count">3</span></a>
-                <div class="mini-cart">
-                    <div class="mini-cart-body">
-                        <div class="single-cart-item d-flex">
-                            <figure class="product-thumb">
-                                <a href="#"><img class="img-fluid" src="assets/img/product-1.jpg"
-                                                 alt="Glass Bangles"/></a>
-                            </figure>
-
-                            <div class="product-details">
-                                <h2><a href="#">Fancy Glass Bangles</a></h2>
-                                <div class="cal d-flex align-items-center">
-                                    <span class="quantity">3</span>
-                                    <span class="multiplication">X</span>
-                                    <span class="price">₹77.00</span>
-                                </div>
-                            </div>
-                            <a href="#" class="remove-icon"><i class="fa fa-trash-o"></i></a>
-                        </div>
-                        <div class="single-cart-item d-flex">
-                            <figure class="product-thumb">
-                                <a href="#"><img class="img-fluid" src="assets/img/product-2.jpg"
-                                                 alt="God Dress"/></a>
-                            </figure>
-                            <div class="product-details">
-                                <h2><a href="#">Laddu Gopal Dress</a></h2>
-                                <div class="cal d-flex align-items-center">
-                                    <span class="quantity">2</span>
-                                    <span class="multiplication">X</span>
-                                    <span class="price">₹600.00</span>
-                                </div>
-                            </div>
-                            <a href="#" class="remove-icon"><i class="fa fa-trash-o"></i></a>
-                        </div>
-                        <div class="single-cart-item d-flex">
-                            <figure class="product-thumb">
-                                <a href="#"><img class="img-fluid" src="assets/img/product-3.jpg"
-                                                 alt="Shiv Dress"/></a>
-                            </figure>
-                            <div class="product-details">
-                                <h2><a href="#">Shiv Dress</a></h2>
-                                <div class="cal d-flex align-items-center">
-                                    <span class="quantity">1</span>
-                                    <span class="multiplication">X</span>
-                                    <span class="price">₹116.00</span>
-                                </div>
-                            </div>
-                            <a href="#" class="remove-icon"><i class="fa fa-trash-o"></i></a>
-                        </div>
+                    <!-- Search -->
+                    <div class="search-container">
+                        <input type="text" class="search-box" placeholder="Search for bangles, cosmetics, poshaks..." id="searchInput" onkeyup="if(event.key==='Enter') searchNow()" oninput="clearTimeout(window.st); window.st=setTimeout(searchNow,300)">
+                        <button class="search-btn" onclick="searchNow()">
+                            <i class="fas fa-search"></i>
+                        </button>
                     </div>
-                    <div class="mini-cart-footer">
-                        <a href="checkout.html" class="btn-add-to-cart">Checkout</a>
+
+                    <!-- Header Actions -->
+                    <div class="header-actions">
+                        <a href="#" class="header-action" onclick="openWishlist()">
+                            <i class="fas fa-heart"></i>
+                            <span>Wishlist</span>
+                            <span class="badge" id="wishlistCount">0</span>
+                        </a>
+                        <a href="#" class="header-action" onclick="openCart()">
+                            <i class="fas fa-shopping-bag"></i>
+                            <span>Cart</span>
+                            <span class="badge" id="cartCount">0</span>
+                        </a>
+                        <a href="#" class="header-action">
+                            <i class="fas fa-user"></i>
+                            <span>Account</span>
+                        </a>
                     </div>
                 </div>
-            </li>
-        </ul>
-    </div>
-</div>
-<!-- Header Right Meta End -->
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="nav-bar">
+            <div class="container">
+                <div class="nav-content">
+                    <a href="#home" class="nav-link active">Home</a>
+                    <a href="#" class="nav-link" onclick="showCategory('bangles')">Bangles & Churis</a>
+                    <a href="#" class="nav-link" onclick="showCategory('poshaks')">God Poshaks</a>
+                    <a href="#" class="nav-link" onclick="showCategory('cosmetics')">Beauty & Cosmetics</a>
+                    <a href="#" class="nav-link" onclick="showCategory('festival')">Festival Items</a>
+                    <a href="#" class="nav-link">About Us</a>
+                    <a href="#" class="nav-link">Contact</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Banner -->
+    <section id="home" class="hero-banner">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Discover Your Perfect Style</h1>
+                <p>From traditional bangles to modern cosmetics - find everything you need to look and feel beautiful at Yadav Bangles Store</p>
+                <div class="cta-buttons">
+                    <a href="#products" class="btn btn-primary">
+                        <i class="fas fa-shopping-bag"></i>
+                        Shop Now
+                    </a>
+                    <a href="https://wa.me/917417163092" class="btn btn-outline">
+                        <i class="fab fa-whatsapp"></i>
+                        WhatsApp Order
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Shop by Category</h2>
+                <p class="section-subtitle">Explore our curated collection of traditional and modern accessories</p>
+            </div>
+            <div class="categories-grid">
+                <div class="category-card" onclick="showCategory('bangles')">
+                    <div class="category-image">
+                        <img src="assets/img/bangles-main.jpg" alt="Bangles & Churis">
+                    </div>
+                    <div class="category-info">
+                        <h3 class="category-title">Bangles & Churis</h3>
+                        <p class="category-description">Beautiful glass bangles in vibrant colors</p>
+                        <a href="#" class="category-link">Shop Collection →</a>
+                    </div>
+                </div>
+
+                <div class="category-card" onclick="showCategory('poshaks')">
+                    <div class="category-image">
+                        <img src="assets/img/new-product-1.jpg" alt="God Poshaks">
+                    </div>
+                    <div class="category-info">
+                        <h3 class="category-title">Divine Poshaks</h3>
+                        <p class="category-description">Sacred dresses for deities</p>
+                        <a href="#" class="category-link">Shop Collection →</a>
+                    </div>
+                </div>
+
+                <div class="category-card" onclick="showCategory('cosmetics')">
+                    <div class="category-image">
+                        <img src="assets/img/product-4.jpg" alt="Beauty & Cosmetics">
+                    </div>
+                    <div class="category-info">
+                        <h3 class="category-title">Beauty & Cosmetics</h3>
+                        <p class="category-description">Premium skincare and makeup</p>
+                        <a href="#" class="category-link">Shop Collection →</a>
+                    </div>
+                </div>
+
+                <div class="category-card" onclick="showCategory('festival')">
+                    <div class="category-image">
+                        <img src="assets/img/sale-product-2.jpg" alt="Festival Items">
+                    </div>
+                    <div class="category-info">
+                        <h3 class="category-title">Festival Specials</h3>
+                        <p class="category-description">Everything for celebrations</p>
+                        <a href="#" class="category-link">Shop Collection →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Featured Products</h2>
+                <p class="section-subtitle">Handpicked items just for you</p>
+            </div>
+            
+            <div class="products-tabs">
+                <button class="tab-btn active" onclick="showProductTab('all')">All Products</button>
+                <button class="tab-btn" onclick="showProductTab('bangles')">Bangles</button>
+                <button class="tab-btn" onclick="showProductTab('poshaks')">Poshaks</button>
+                <button class="tab-btn" onclick="showProductTab('cosmetics')">Beauty</button>
+                <button class="tab-btn" onclick="showProductTab('festival')">Festival</button>
+            </div>
+
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Why Choose Us?</h2>
+                <p class="section-subtitle">Experience the best in traditional jewelry and modern beauty</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3 class="feature-title">Premium Quality</h3>
+                    <p class="feature-description">Hand-selected, authentic materials ensuring durability and elegance in every piece</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-truck-fast"></i>
+                    </div>
+                    <h3 class="feature-title">Fast Delivery</h3>
+                    <p class="feature-description">Free home delivery within Aligarh for orders above ₹500. Same day delivery available</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3 class="feature-title">24/7 Support</h3>
+                    <p class="feature-description">Always available at 7417163092 for all your queries and assistance</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-check"></i>
+                    </div>
+                    <h3 class="feature-title">Secure Shopping</h3>
+                    <p class="feature-description">30-day return policy with full refund if you're not completely satisfied</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-content">
+                <h3>Stay in the Loop</h3>
+                <p>Get exclusive offers, new arrivals, and beauty tips delivered to your inbox</p>
+                <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+                    <input type="email" class="newsletter-input" placeholder="Enter your email" required>
+                    <button type="submit" class="newsletter-btn">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Yadav Bangles Store</h4>
+                    <p>Your trusted destination for traditional bangles, divine poshaks, premium cosmetics, and festival essentials in Jaiganj, Aligarh.</p>
+                    <div class="social-icons">
+                        <a href="https://wa.me/917417163092" class="social-icon" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="tel:+917417163092" class="social-icon">
+                            <i class="fas fa-phone"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Categories</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="showCategory('bangles')">Bangles & Churis</a></li>
+                        <li><a href="#" onclick="showCategory('poshaks')">God Poshaks</a></li>
+                        <li><a href="#" onclick="showCategory('cosmetics')">Beauty & Cosmetics</a></li>
+                        <li><a href="#" onclick="showCategory('festival')">Festival Items</a></li>
+                        <li><a href="#">Jewelry</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Jaiganj, Aligarh, Uttar Pradesh</p>
+                    <p><i class="fas fa-phone"></i> <a href="tel:+917417163092">+91 7417163092</a></p>
+                    <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/917417163092">WhatsApp Orders</a></p>
+                    <p><i class="fas fa-clock"></i> Mon - Sun: 9:00 AM - 9:00 PM</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Yadav Bangles Store, Jaiganj Aligarh. All Rights Reserved. | 
+                   <a href="tel:+917417163092" style="color: var(--primary-color);">Call: +91 7417163092</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/917417163092" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Product Modal -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Product Details</h3>
+                <button class="modal-close" onclick="closeModal('productModal')">&times;</button>
+            </div>
+            <div class="modal-body" id="productModalBody">
+                <!-- Product details will be populated by JavaScript -->
+            </div>
         </div>
     </div>
-</header>
-<!--== Header Area End ==-->
 
-<!--== Search Box Area Start ==-->
-<div class="body-popup-modal-area">
-    <span class="modal-close"><img src="assets/img/cancel.png" alt="Close" class="img-fluid"/></span>
-    <div class="modal-container d-flex">
-        <div class="search-box-area">
-            <div class="search-box-form">
-                <form action="#" method="post">
-                    <input type="search" placeholder="type keyword and hit enter"/>
-                    <button class="btn" type="button"><i class="fa fa-search"></i></button>
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Place Your Order</h3>
+                <button class="modal-close" onclick="closeModal('bookingModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="bookingForm" onsubmit="submitOrder(event)">
+                    <div class="form-group">
+                        <label class="form-label">Your Name *</label>
+                        <input type="text" class="form-input" name="customerName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Phone Number *</label>
+                        <input type="tel" class="form-input" name="customerPhone" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Delivery Address *</label>
+                        <textarea class="form-input form-textarea" name="customerAddress" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Product</label>
+                        <input type="text" class="form-input" name="productName" readonly>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Quantity *</label>
+                        <select class="form-input" name="quantity" required>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="5">5</option>
+                            <option value="10">10+</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Special Requests (Optional)</label>
+                        <textarea class="form-input form-textarea" name="specialRequests" placeholder="Any specific requirements..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">
+                        <i class="fab fa-whatsapp"></i>
+                        Send WhatsApp Order
+                    </button>
                 </form>
             </div>
         </div>
     </div>
-</div>
-<!--== Search Box Area End ==-->
 
-<!--== Banner // Slider Area Start ==-->
-<section id="banner-area">
-    <div class="ruby-container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div id="banner-carousel" class="owl-carousel">
-                    <!-- Banner Single Carousel Start -->
-                    <div class="single-carousel-wrap slide-item-1">
-                        <div class="banner-caption text-center text-lg-left">
-                            <h4>Yadav Bangles Store </h4>
-                            <h2>Exquisite Glass Bangles</h2>
-                            <p>Bringing you the finest collection of fancy glass bangles, perfect for every occasion.</p>
-                            <a href="#" class="btn-long-arrow">Shop Now</a>
-                        </div>
-                    </div>
-                    <!-- Banner Single Carousel End -->
+    <script>
+        // Global variables
+        let cart = [];
+        let wishlist = [];
+        let currentProducts = [];
 
-                    <!-- Banner Single Carousel Start -->
-                    <div class="single-carousel-wrap slide-item-2">
-                        <div class="banner-caption text-center text-lg-left">
-                            <h4>New Collection 2025</h4>
-                            <h2>Elegant God Dresses</h2>
-                            <p>Traditional god dresses for your divine idols—crafted with care and devotion.</p>
-                            <a href="#" class="btn-long-arrow">Shop Now</a>
-                        </div>
-                    </div>
-                    <!-- Banner Single Carousel End -->
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!--== Banner Slider End ==-->
+        // Product data
+        const products = [
+            {
+                id: 1,
+                name: 'Golden Glass Bangles',
+                category: 'bangles',
+                price: 120,
+                originalPrice: 150,
+                image: 'assets/img/product-1.jpg',
+                rating: 4.5,
+                reviews: 23,
+                badge: 'New',
+                description: 'Beautiful golden glass bangles perfect for special occasions.'
+            },
+            {
+                id: 2,
+                name: 'Colorful Glass Bangles',
+                category: 'bangles',
+                price: 80,
+                originalPrice: 100,
+                image: 'assets/img/bangles-main.jpg',
+                rating: 5,
+                reviews: 45,
+                badge: 'Popular',
+                description: 'Vibrant colorful glass bangles available in multiple colors.'
+            },
+            {
+                id: 3,
+                name: 'Traditional Red Bangles',
+                category: 'bangles',
+                price: 100,
+                originalPrice: 120,
+                image: 'assets/img/product-2.jpg',
+                rating: 4.8,
+                reviews: 32,
+                badge: 'Sale',
+                description: 'Classic red bangles perfect for married women.'
+            },
+            {
+                id: 4,
+                name: 'Crystal Clear Bangles',
+                category: 'bangles',
+                price: 150,
+                originalPrice: 180,
+                image: 'assets/img/product-3.jpg',
+                rating: 4.3,
+                reviews: 18,
+                badge: 'Premium',
+                description: 'Elegant crystal clear bangles with sparkling finish.'
+            },
+            {
+                id: 5,
+                name: 'Laddu Gopal Dress',
+                category: 'poshaks',
+                price: 250,
+                originalPrice: 300,
+                image: 'assets/img/new-product-1.jpg',
+                rating: 5,
+                reviews: 67,
+                badge: 'Divine',
+                description: 'Beautiful divine dress for Laddu Gopal with premium fabric.'
+            },
+            {
+                id: 6,
+                name: 'Durga Mata Dress',
+                category: 'poshaks',
+                price: 400,
+                originalPrice: 450,
+                image: 'assets/img/new-product-2.jpg',
+                rating: 4.9,
+                reviews: 34,
+                badge: 'Spiritual',
+                description: 'Sacred dress for Durga Mata with intricate designs.'
+            },
+            {
+                id: 7,
+                name: 'Premium Skincare Set',
+                category: 'cosmetics',
+                price: 180,
+                originalPrice: 220,
+                image: 'assets/img/product-4.jpg',
+                rating: 4.6,
+                reviews: 89,
+                badge: 'Trending',
+                description: 'Complete skincare set with natural ingredients.'
+            },
+            {
+                id: 8,
+                name: 'Makeup Collection',
+                category: 'cosmetics',
+                price: 220,
+                originalPrice: 280,
+                image: 'assets/img/sale-product-1.jpg',
+                rating: 4.4,
+                reviews: 56,
+                badge: 'Popular',
+                description: 'Professional makeup collection for all occasions.'
+            },
+            {
+                id: 9,
+                name: 'Diwali Special Items',
+                category: 'festival',
+                price: 200,
+                originalPrice: 250,
+                image: 'assets/img/sale-product-2.jpg',
+                rating: 4.7,
+                reviews: 78,
+                badge: 'Festival',
+                description: 'Complete Diwali celebration essentials.'
+            },
+            {
+                id: 10,
+                name: 'Holi Colors & Gulal',
+                category: 'festival',
+                price: 150,
+                originalPrice: 180,
+                image: 'assets/img/clothing.jpg',
+                rating: 4.5,
+                reviews: 43,
+                badge: 'Colorful',
+                description: 'Premium quality Holi colors and gulal.'
+            }
+        ];
 
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            currentProducts = products;
+            renderProducts(products);
+            updateCartCount();
+            updateWishlistCount();
+            
+            // Show welcome message
+            setTimeout(() => {
+                showNotification('Welcome to Yadav Bangles Store! 🎉', 'success');
+            }, 1000);
+        });
 
-<!--== About Us Area Start ==-->
-<section id="aboutUs-area" class="pt-9">
-    <div class="ruby-container">
-        <div class="row">
-            <div class="col-lg-6">
-                <!-- About Image Area Start -->
-                <div class="about-image-wrap">
-                    <a href="about.html"><img src="assets/img/about-img.png" alt="About Us" class="img-fluid"/></a>
-                </div>
-                <!-- About Image Area End -->
-            </div>
+        // Render products
+        function renderProducts(productsToRender) {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = '';
 
-            <div class="col-lg-6 m-auto">
-                <!-- About Text Area Start -->
-                <div class="about-content-wrap ml-0 ml-lg-5 mt-5 mt-lg-0">
-                    <h2>About Yadav Bangles Store</h2>
-                    <h3>We Bring Culture to Life</h3>
-                    <div class="about-text">
-                        <p>"At Yadav Bangles Store, we specialize in fancy glass bangles, cosmetic products, god dresses (including Laddu Gopal, Durga Mata, Ganesh, Shiv dresses), and other holy items. Each product we offer is designed to bring beauty and tradition into your life. For inquiries, contact us at: 7417163092."</p>
-
-                        <p>Visit us at Jaiganj, Aligarh, and connect with us for all your decorative and spiritual needs. Reach us at: 7417163092</p>
-
-                        <a href="about.html" class="btn btn-long-arrow">Learn More</a>
-
-                        <h4 class="vertical-text">WHO WE ARE?</h4>
-                    </div>
-                </div>
-                <!-- About Text Area End -->
-            </div>
-        </div>
-    </div>
-</section>
-<!--== About Us Area End ==-->
-
-
-<!--== New Collection Area Start ==-->
-<section id="new-collection-area" class="p-9">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <!-- Section Title Start -->
-                <div class="section-title">
-                    <h2>New Collection Products</h2>
-                    <p>Best products on sale.</p>
-                </div>
-                <!-- Section Title End -->
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="new-collection-tabs">
-
-                    <!--== Tab Menu Area Start ==-->
-                    <ul class="nav tab-menu-wrap" id="myTab" role="tablist">
-                        <li class="nav-item">
-                            <a class="active" id="feature-products-tab" data-toggle="tab" href="#feature-products"
-                            role="tab" aria-controls="feature-products-tab" aria-selected="true">Featured Bangles</a>
-                        </li>
-                        <li class="nav-item">
-                            <a id="new-products-tab" data-toggle="tab" href="#new-products" role="tab"
-                            aria-controls="new-products" aria-selected="false">New God Dresses</a>
-                        </li>
-                        <li class="nav-item">
-                            <a id="onsale-tab" data-toggle="tab" href="#onsale" role="tab" aria-controls="onsale"
-                            aria-selected="false">Festival Specials</a>
-                        </li>
-                    </ul>
-                    <!--== Tab Menu Area End ==-->
-
-
-                    <!-- Tab Content Area Start -->
-                    <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade show active" id="feature-products" role="tabpanel" aria-labelledby="feature-products-tab">
-                            <div class="products-wrapper">
-                                <div class="products-carousel owl-carousel">
-                                    <!-- Single Product Item -->
-                                    <div class="single-product-item text-center">
-                                        <figure class="product-thumb">
-                                            <a href="single-product.html"><img src="assets/img/slide-img-1.jpg" alt="Fancy Bangle" class="img-fluid"></a>
-                                        </figure>
-                                        <div class="product-details">
-                                            <h2><a href="single-product.html">Golden Glass Bangles</a></h2>
-                                            <div class="rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-half"></i>
-                                                <i class="fa fa-star-o"></i>
-                                            </div>
-                                            <span class="price">$25.00</span>
-                                            <a href="single-product.html" class="btn btn-add-to-cart">+ Add to Cart</a>
-                                            <span class="product-bedge">New</span>
-                                        </div>
-                                        <div class="product-meta">
-                                            <button type="button" data-toggle="modal" data-target="#quickView">
-                                                <span data-toggle="tooltip" data-placement="left" title="Quick View"><i class="fa fa-compress"></i></span>
-                                            </button>
-                                            <a href="wishlist.html" data-toggle="tooltip" data-placement="left" title="Add to Wishlist"><i class="fa fa-heart-o"></i></a>
-                                            <a href="compare.html" data-toggle="tooltip" data-placement="left" title="Compare"><i class="fa fa-tags"></i></a>
-                                        </div>
-                                    </div>
-                                    <!-- Single Product Item -->
-                        
-                                    <!-- Single Product Item -->
-                                    <div class="single-product-item text-center">
-                                        <figure class="product-thumb">
-                                            <a href="single-product.html"><img src="assets/img/slide-img-1.jpg" alt="Colored Glass Bangle" class="img-fluid"></a>
-                                        </figure>
-                                        <div class="product-details">
-                                            <h2><a href="single-product.html">Colorful Glass Bangles</a></h2>
-                                            <div class="rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-o"></i>
-                                            </div>
-                                            <span class="price">$30.00</span>
-                                            <a href="single-product.html" class="btn btn-add-to-cart">+ Add to Cart</a>
-                                        </div>
-                                        <div class="product-meta">
-                                            <button type="button" data-toggle="modal" data-target="#quickView">
-                                                <span data-toggle="tooltip" data-placement="left" title="Quick View"><i class="fa fa-compress"></i></span>
-                                            </button>
-                                            <a href="wishlist.html" data-toggle="tooltip" data-placement="left" title="Add to Wishlist"><i class="fa fa-heart-o"></i></a>
-                                            <a href="compare.html" data-toggle="tooltip" data-placement="left" title="Compare"><i class="fa fa-tags"></i></a>
-                                        </div>
-                                    </div>
-                                    <!-- Single Product Item -->
-                        
-                                    <!-- Single Product Item -->
-                                    <div class="single-product-item text-center">
-                                        <figure class="product-thumb">
-                                            <a href="single-product.html"><img src="assets/img/slide-img-1.jpg" alt="Traditional Bangles" class="img-fluid"></a>
-                                        </figure>
-                                        <div class="product-details">
-                                            <h2><a href="single-product.html">Traditional Red Bangles</a></h2>
-                                            <div class="rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <span class="price">$20.00</span>
-                                            <a href="single-product.html" class="btn btn-add-to-cart">+ Add to Cart</a>
-                                        </div>
-                                        <div class="product-meta">
-                                            <button type="button" data-toggle="modal" data-target="#quickView">
-                                                <span data-toggle="tooltip" data-placement="left" title="Quick View"><i class="fa fa-compress"></i></span>
-                                            </button>
-                                            <a href="wishlist.html" data-toggle="tooltip" data-placement="left" title="Add to Wishlist"><i class="fa fa-heart-o"></i></a>
-                                            <a href="compare.html" data-toggle="tooltip" data-placement="left" title="Compare"><i class="fa fa-tags"></i></a>
-                                        </div>
-                                    </div>
-                                    <!-- Single Product Item -->
-                        
-                                    <!-- Single Product Item -->
-                                    <div class="single-product-item text-center">
-                                        <figure class="product-thumb">
-                                            <a href="single-product.html"><img src="assets/img/slide-img-1.jpg" alt="Crystal Bangles" class="img-fluid"></a>
-                                        </figure>
-                                        <div class="product-details">
-                                            <h2><a href="single-product.html">Crystal Clear Bangles</a></h2>
-                                            <div class="rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-half"></i>
-                                            </div>
-                                            <span class="price">$35.00</span>
-                                            <a href="single-product.html" class="btn btn-add-to-cart">+ Add to Cart</a>
-                                            <span class="product-bedge sale">Sale</span>
-                                        </div>
-                                        <div class="product-meta">
-                                            <button type="button" data-toggle="modal" data-target="#quickView">
-                                                <span data-toggle="tooltip" data-placement="left" title="Quick View"><i class="fa fa-compress"></i></span>
-                                            </button>
-                                            <a href="wishlist.html" data-toggle="tooltip" data-placement="left" title="Add to Wishlist"><i class="fa fa-heart-o"></i></a>
-                                            <a href="compare.html" data-toggle="tooltip" data-placement="left" title="Compare"><i class="fa fa-tags"></i></a>
-                                        </div>
-                                    </div>
-                                    <!-- Single Product Item -->
-                                </div>
-                            </div>
-                        </div>
-                        
-
-                        <div class="tab-pane fade" id="new-products" role="tabpanel" aria-labelledby="new-products-tab">
-                            <div class="products-wrapper">
-                                <div class="products-carousel owl-carousel">
-                                    <!-- Single Product Item -->
-                                    <div class="single-product-item text-center">
-                                        <figure class="product-thumb">
-                                            <a href="single-product.html"><img src="assets/img/slide-img-2.jpg"
-                                                                               alt="Products" class="img-fluid"></a>
-                                        </figure>
-
-                                        <div class="product-details">
-                                            <h2><a href="single-product.html">Crown Summit Backpack</a></h2>
-                                            <div class="rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-half"></i>
-                                                <i class="fa fa-star-o"></i>
-                                            </div>
-                                            <span class="price">$52.00</span>
-                                            <a href="single-product.html" class="btn btn-add-to-cart">+ Add to Cart</a>
-                                            <span class="product-bedge">New</span>
-                                        </div>
-
-                                        <div class="product-meta">
-                                            <button type="button" data-toggle="modal" data-target="#quickView">
-                                                <span data-toggle="tooltip" data-placement="left" title="Quick View"><i
-                                                        class="fa fa-compress"></i></span>
-                                            </button>
-                                            <a href="wishlist.html" data-toggle="tooltip" data-placement="left"
-                                               title="Add to Wishlist"><i class="fa fa-heart-o"></i></a>
-                                            <a href="compare.html" data-toggle="tooltip" data-placement="left"
-                                               title="Compare"><i class="fa fa-tags"></i></a>
-                                        </div>
-                                    </div>
-                                    <!-- Single Product Item -->
-
-                                    <!-- Single Product Item -->
-                                    <div class="single-product-item text-center">
-                                        <figure class="product-thumb">
-                                            <a href="single-product.html"><img src="assets/img/slide-img-2.jpg"
-                                                                               alt="Products" class="img-fluid"></a>
-                                        </figure>
-
-                                        <div class="product-details">
-                                            <h2><a href="single-product.html">Bruno Compete Hoodie</a></h2>
-                                            <div class="rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-o"></i>
-                                            </div>
-                                            <span class="price">$152.00</span>
-                                            <a href="single-product.html" class="btn btn-add-to-cart">+ Add to Cart</a>
-                                            <span class="product-bedge">New</span>
-                                        </div>
-
-                                        <div class="product-meta">
-                                            <button type="button" data-toggle="modal" data-target="#quickView">
-                                                <span data-toggle="tooltip" data-placement="left" title="Quick View"><i
-                                                        class="fa fa-compress"></i></span>
-                                            </button>
-                                            <a href="wishlist.html" data-toggle="tooltip" data-placement="left"
-                                               title="Add to Wishlist"><i class="fa fa-heart-o"></i></a>
-                                            <a href="compare.html" data-toggle="tooltip" data-placement="left"
-                                               title="Compare"><i class="fa fa-tags"></i></a>
-                                        </div>
-                                    </div>
-                                    <!-- Single Product Item -->
-
-                                    <!-- Single Product Item -->
-                                    <div class="single-product-item text-center">
-                                        <figure class="product-thumb">
-                                            <a href="single-product.html"><img src="assets/img/slide-img-2.jpg"
-                                                                               alt="Products" class="img-fluid"></a>
-                                        </figure>
-
-                                        <div class="product-details">
-                                            <h2><a href="single-product.html">MH01-Black</a></h2>
-                                            <div class="rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <span class="price">$43.00</span>
-                                            <a href="single-product.html" class="btn btn-add-to-cart">+ Add to Cart</a>
-                                            <span class="product-bedge">New</span>
-                                        </div>
-
-                                        <div class="product-meta">
-                                            <button type="button" data-toggle="modal" data-target="#quickView">
-                                                <span data-toggle="tooltip" data-placement="left" title="Quick View"><i
-                                                        class="fa fa-compress"></i></span>
-                                            </button>
-                                            <a href="wishlist.html" data-toggle="tooltip" data-placement="left"
-                                               title="Add to Wishlist"><i class="fa fa-heart-o"></i></a>
-                                            <a href="compare.html" data-toggle="tooltip" data-placement="left"
-                                               title="Compare"><i class="fa fa-tags"></i></a>
-                                        </div>
-                                    </div>
-                                    <!-- Single Product Item -->
-
-                                    <!-- Single Product Item -->
-                                    <div class="single-product-item text-center">
-                                        <figure class="product-thumb">
-                                            <a href="single-product.html"><img src="assets/img/slide-img-2.jpg"
-                                                                               alt="Products" class="img-fluid"></a>
-                                        </figure>
-
-                                        <div class="product-details">
-                                            <h2><a href="single-product.html">Chaz Kangeroo Hoodie</a></h2>
-                                            <div class="rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-half"></i>
-                                            </div>
-                                            <span class="price">$83.00</span>
-                                            <a href="single-product.html" class="btn btn-add-to-cart">+ Add to Cart</a>
-                                            <span class="product-bedge sale">Sale</span>
-                                        </div>
-
-                                        <div class="product-meta">
-                                            <button type="button" data-toggle="modal" data-target="#quickView">
-                                                <span data-toggle="tooltip" data-placement="left" title="Quick View"><i
-                                                        class="fa fa-compress"></i></span>
-                                            </button>
-                                            <a href="wishlist.html" data-toggle="tooltip" data-placement="left"
-                                               title="Add to Wishlist"><i class="fa fa-heart-o"></i></a>
-                                            <a href="compare.html" data-toggle="tooltip" data-placement="left"
-                                               title="Compare"><i class="fa fa-tags"></i></a>
-                                        </div>
-                                    </div>
-                                    <!-- Single Product Item -->
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="tab-pane fade" id="onsale" role="tabpanel" aria-labelledby="onsale-tab">
-                            <div class="products-wrapper">
-                                <div class="products-carousel owl-carousel">
-                                    <!-- Single Product Item -->
-                                    <div class="single-product-item text-center">
-                                        <figure class="product-thumb">
-                                            <a href="single-product.html"><img src="assets/img/slide-img-3.jpg"
-                                                                               alt="Products" class="img-fluid"></a>
-                                        </figure>
-
-                                        <div class="product-details">
-                                            <h2><a href="single-product.html">Crown Summit Backpack</a></h2>
-                                            <div class="rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-half"></i>
-                                                <i class="fa fa-star-o"></i>
-                                            </div>
-                                            <span class="price">$52.00</span>
-                                            <a href="single-product.html" class="btn btn-add-to-cart">+ Add to Cart</a>
-                                            <span class="product-bedge sale">Sale</span>
-                                        </div>
-
-                                        <div class="product-meta">
-                                            <button type="button" data-toggle="modal" data-target="#quickView">
-                                                <span data-toggle="tooltip" data-placement="left" title="Quick View"><i
-                                                        class="fa fa-compress"></i></span>
-                                            </button>
-                                            <a href="wishlist.html" data-toggle="tooltip" data-placement="left"
-                                               title="Add to Wishlist"><i class="fa fa-heart-o"></i></a>
-                                            <a href="compare.html" data-toggle="tooltip" data-placement="left"
-                                               title="Compare"><i class="fa fa-tags"></i></a>
-                                        </div>
-                                    </div>
-                                    <!-- Single Product Item -->
-
-                                    <!-- Single Product Item -->
-                                    <div class="single-product-item text-center">
-                                        <figure class="product-thumb">
-                                            <a href="single-product.html"><img src="assets/img/slide-img-3.jpg"
-                                                                               alt="Products" class="img-fluid"></a>
-                                        </figure>
-
-                                        <div class="product-details">
-                                            <h2><a href="single-product.html">Bruno Compete Hoodie</a></h2>
-                                            <div class="rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-o"></i>
-                                            </div>
-                                            <span class="price">$152.00</span>
-                                            <a href="single-product.html" class="btn btn-add-to-cart">+ Add to Cart</a>
-                                            <span class="product-bedge sale">Sale</span>
-                                        </div>
-
-                                        <div class="product-meta">
-                                            <button type="button" data-toggle="modal" data-target="#quickView">
-                                                <span data-toggle="tooltip" data-placement="left" title="Quick View"><i
-                                                        class="fa fa-compress"></i></span>
-                                            </button>
-                                            <a href="wishlist.html" data-toggle="tooltip" data-placement="left"
-                                               title="Add to Wishlist"><i class="fa fa-heart-o"></i></a>
-                                            <a href="compare.html" data-toggle="tooltip" data-placement="left"
-                                               title="Compare"><i class="fa fa-tags"></i></a>
-                                        </div>
-                                    </div>
-                                    <!-- Single Product Item -->
-
-                                    <!-- Single Product Item -->
-                                    <div class="single-product-item text-center">
-                                        <figure class="product-thumb">
-                                            <a href="single-product.html"><img src="assets/img/slide-img-3.jpg"
-                                                                               alt="Products" class="img-fluid"></a>
-                                        </figure>
-
-                                        <div class="product-details">
-                                            <h2><a href="single-product.html">MH01-Black</a></h2>
-                                            <div class="rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <span class="price">$43.00</span>
-                                            <a href="single-product.html" class="btn btn-add-to-cart">+ Add to Cart</a>
-                                            <span class="product-bedge sale">Sale</span>
-                                        </div>
-
-                                        <div class="product-meta">
-                                            <button type="button" data-toggle="modal" data-target="#quickView">
-                                                <span data-toggle="tooltip" data-placement="left" title="Quick View"><i
-                                                        class="fa fa-compress"></i></span>
-                                            </button>
-                                            <a href="wishlist.html" data-toggle="tooltip" data-placement="left"
-                                               title="Add to Wishlist"><i class="fa fa-heart-o"></i></a>
-                                            <a href="compare.html" data-toggle="tooltip" data-placement="left"
-                                               title="Compare"><i class="fa fa-tags"></i></a>
-                                        </div>
-                                    </div>
-                                    <!-- Single Product Item -->
-
-                                    <!-- Single Product Item -->
-                                    <div class="single-product-item text-center">
-                                        <figure class="product-thumb">
-                                            <a href="single-product.html"><img src="assets/img/slide-img-3.jpg"
-                                                                               alt="Products" class="img-fluid"></a>
-                                        </figure>
-
-                                        <div class="product-details">
-                                            <h2><a href="single-product.html">Chaz Kangeroo Hoodie</a></h2>
-                                            <div class="rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-half"></i>
-                                            </div>
-                                            <span class="price">$83.00</span>
-                                            <a href="single-product.html" class="btn btn-add-to-cart">+ Add to Cart</a>
-                                            <span class="product-bedge sale">Sale</span>
-                                        </div>
-
-                                        <div class="product-meta">
-                                            <button type="button" data-toggle="modal" data-target="#quickView">
-                                                <span data-toggle="tooltip" data-placement="left" title="Quick View"><i
-                                                        class="fa fa-compress"></i></span>
-                                            </button>
-                                            <a href="wishlist.html" data-toggle="tooltip" data-placement="left"
-                                               title="Add to Wishlist"><i class="fa fa-heart-o"></i></a>
-                                            <a href="compare.html" data-toggle="tooltip" data-placement="left"
-                                               title="Compare"><i class="fa fa-tags"></i></a>
-                                        </div>
-                                    </div>
-                                    <!-- Single Product Item -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Tab Content Area End -->
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!--== New Collection Area End ==-->
-
-<!--== Products by Category Area Start ==-->
-<div id="product-categories-area">
-    <div class="ruby-container">
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="large-size-cate">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="single-cat-item">
-                                <figure class="category-thumb">
-                                    <a href="#"><img src="assets/img/slide-img-2.jpg" alt="Women Category"
-                                                     class="img-fluid"/></a>
-
-                                    <figcaption class="category-name">
-                                        <a href="#">Shop for God Dress</a>
-                                    </figcaption>
-                                </figure>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <div class="single-cat-item">
-                                <figure class="category-thumb">
-                                    <a href="#"><img src="assets/img/slide-img-1.jpg" alt="Men Category" class="img-fluid"/></a>
-
-                                    <figcaption class="category-name">
-                                        <a href="#">Shop For Bangles</a>
-                                    </figcaption>
-                                </figure>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-6">
-                <div class="small-size-cate">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="single-cat-item">
-                                <figure class="category-thumb">
-                                    <a href="#"><img src="assets/img/jewellery-cat.jpg" alt="Men Category"
-                                                     class="img-fluid"/></a>
-
-                                    <figcaption class="category-name">
-                                        <a href="#">Jewellery</a>
-                                    </figcaption>
-                                </figure>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <div class="single-cat-item">
-                                <figure class="category-thumb">
-                                    <a href="#"><img src="assets/img/slide-img-3.jpg" alt="Men Category"
-                                                     class="img-fluid"/></a>
-
-                                    <figcaption class="category-name">
-                                        <a href="#">Fesival</a>
-                                    </figcaption>
-                                </figure>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <div class="single-cat-item">
-                                <figure class="category-thumb">
-                                    <a href="#"><img src="assets/img/slide-img-1.jpg" alt="Men Category"
-                                                     class="img-fluid"/></a>
-
-                                    <figcaption class="category-name">
-                                        <a href="#">bangles</a>
-                                    </figcaption>
-                                </figure>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <div class="single-cat-item">
-                                <figure class="category-thumb">
-                                    <a href="#"><img src="assets/img/slide-img-2.jpg" alt="Men Category"
-                                                     class="img-fluid"/></a>
-
-                                    <figcaption class="category-name">
-                                        <a href="#">Poshaks</a>
-                                    </figcaption>
-                                </figure>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!--== Products by Category Area End ==-->
-
-<!--== New Products Area Start ==-->
-<section id="new-products-area" class="p-9">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <!-- Section Title Start -->
-                <div class="section-title">
-                    <h2>New Products</h2>
-                    <p>Trending stunning Unique</p>
-                </div>
-                <!-- Section Title End -->
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="products-wrapper">
-                    <div class="new-products-carousel owl-carousel">
-                        <!-- Single Product Item -->
-                        <div class="single-product-item text-center">
-                            <figure class="product-thumb">
-                                <a href="single-product.html"><img src="assets/img/slide-img-3.jpg" alt="Products"
-                                                                   class="img-fluid"></a>
-                            </figure>
-
-                            <div class="product-details">
-                                <h2><a href="single-product.html">Crown Summit Backpack</a></h2>
-                                <div class="rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-half"></i>
-                                    <i class="fa fa-star-o"></i>
-                                </div>
-                                <span class="price">$52.00</span>
-                                <a href="single-product.html" class="btn btn-add-to-cart">+ Add to Cart</a>
-                                <span class="product-bedge">New</span>
-                            </div>
-
-                            <div class="product-meta">
-                                <button type="button" data-toggle="modal" data-target="#quickView">
-                                    <span data-toggle="tooltip" data-placement="left" title="Quick View"><i
-                                            class="fa fa-compress"></i></span>
+            productsToRender.forEach(product => {
+                const discount = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
+                const stars = generateStars(product.rating);
+                
+                const productCard = `
+                    <div class="product-card" data-category="${product.category}">
+                        <div class="product-image">
+                            <img src="${product.image}" alt="${product.name}">
+                            <span class="product-badge">${product.badge}</span>
+                            <div class="product-actions">
+                                <button class="action-btn" onclick="quickView(${product.id})" title="Quick View">
+                                    <i class="fas fa-eye"></i>
                                 </button>
-                                <a href="wishlist.html" data-toggle="tooltip" data-placement="left"
-                                   title="Add to Wishlist"><i
-                                        class="fa fa-heart-o"></i></a>
-                                <a href="compare.html" data-toggle="tooltip" data-placement="left" title="Compare"><i
-                                        class="fa fa-tags"></i></a>
-                            </div>
-                        </div>
-                        <!-- Single Product Item -->
-
-                        <!-- Single Product Item -->
-                        <div class="single-product-item text-center">
-                            <figure class="product-thumb">
-                                <a href="single-product.html"><img src="assets/img/slide-img-3.jpg" alt="Products"
-                                                                   class="img-fluid"></a>
-                            </figure>
-
-                            <div class="product-details">
-                                <h2><a href="single-product.html">Bruno Compete Hoodie</a></h2>
-                                <div class="rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-o"></i>
-                                </div>
-                                <span class="price">$152.00</span>
-                                <a href="single-product.html" class="btn btn-add-to-cart">+ Add to Cart</a>
-                                <span class="product-bedge">New</span>
-                            </div>
-
-                            <div class="product-meta">
-                                <button type="button" data-toggle="modal" data-target="#quickView">
-                                    <span data-toggle="tooltip" data-placement="left" title="Quick View"><i
-                                            class="fa fa-compress"></i></span>
+                                <button class="action-btn" onclick="toggleWishlist(${product.id})" title="Add to Wishlist">
+                                    <i class="fas fa-heart"></i>
                                 </button>
-                                <a href="wishlist.html" data-toggle="tooltip" data-placement="left"
-                                   title="Add to Wishlist"><i
-                                        class="fa fa-heart-o"></i></a>
-                                <a href="compare.html" data-toggle="tooltip" data-placement="left" title="Compare"><i
-                                        class="fa fa-tags"></i></a>
                             </div>
                         </div>
-                        <!-- Single Product Item -->
-
-                        <!-- Single Product Item -->
-                        <div class="single-product-item text-center">
-                            <figure class="product-thumb">
-                                <a href="single-product.html"><img src="assets/img/slide-img-3.jpg" alt="Products"
-                                                                   class="img-fluid"></a>
-                            </figure>
-
-                            <div class="product-details">
-                                <h2><a href="single-product.html">MH01-Black</a></h2>
-                                <div class="rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                                <span class="price">$43.00</span>
-                                <a href="single-product.html" class="btn btn-add-to-cart">+ Add to Cart</a>
-                                <span class="product-bedge">New</span>
+                        <div class="product-info">
+                            <h3 class="product-title">${product.name}</h3>
+                            <div class="product-rating">
+                                ${stars}
+                                <span class="rating-text">(${product.reviews})</span>
                             </div>
-
-                            <div class="product-meta">
-                                <button type="button" data-toggle="modal" data-target="#quickView">
-                                    <span data-toggle="tooltip" data-placement="left" title="Quick View"><i
-                                            class="fa fa-compress"></i></span>
+                            <div class="product-price">
+                                <span class="current-price">₹${product.price}</span>
+                                <span class="original-price">₹${product.originalPrice}</span>
+                                <span class="discount">${discount}% OFF</span>
+                            </div>
+                            <div class="product-footer">
+                                <button class="btn-cart" onclick="addToCart(${product.id})">
+                                    <i class="fas fa-shopping-bag"></i> Add to Cart
                                 </button>
-                                <a href="wishlist.html" data-toggle="tooltip" data-placement="left"
-                                   title="Add to Wishlist"><i
-                                        class="fa fa-heart-o"></i></a>
-                                <a href="compare.html" data-toggle="tooltip" data-placement="left" title="Compare"><i
-                                        class="fa fa-tags"></i></a>
-                            </div>
-                        </div>
-                        <!-- Single Product Item -->
-
-                        <!-- Single Product Item -->
-                        <div class="single-product-item text-center">
-                            <figure class="product-thumb">
-                                <a href="single-product.html"><img src="assets/img/slide-img-3.jpg" alt="Products"
-                                                                   class="img-fluid"></a>
-                            </figure>
-
-                            <div class="product-details">
-                                <h2><a href="single-product.html">Chaz Kangeroo Hoodie</a></h2>
-                                <div class="rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-half"></i>
-                                </div>
-                                <span class="price">$83.00</span>
-                                <a href="single-product.html" class="btn btn-add-to-cart">+ Add to Cart</a>
-                                <span class="product-bedge sale">Sale</span>
-                            </div>
-
-                            <div class="product-meta">
-                                <button type="button" data-toggle="modal" data-target="#quickView">
-                                    <span data-toggle="tooltip" data-placement="left" title="Quick View"><i
-                                            class="fa fa-compress"></i></span>
-                                </button>
-                                <a href="wishlist.html" data-toggle="tooltip" data-placement="left"
-                                   title="Add to Wishlist"><i
-                                        class="fa fa-heart-o"></i></a>
-                                <a href="compare.html" data-toggle="tooltip" data-placement="left" title="Compare"><i
-                                        class="fa fa-tags"></i></a>
-                            </div>
-                        </div>
-                        <!-- Single Product Item -->
-
-                        <!-- Single Product Item -->
-                        <div class="single-product-item text-center">
-                            <figure class="product-thumb">
-                                <a href="single-product.html"><img src="assets/img/slide-img-3.jpg" alt="Products"
-                                                                   class="img-fluid"></a>
-                            </figure>
-
-                            <div class="product-details">
-                                <h2><a href="single-product.html">Chaz Kangeroo Hoodie</a></h2>
-                                <div class="rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-half"></i>
-                                </div>
-                                <span class="price">$83.00</span>
-                                <a href="single-product.html" class="btn btn-add-to-cart">+ Add to Cart</a>
-                                <span class="product-bedge sale">Sale</span>
-                            </div>
-
-                            <div class="product-meta">
-                                <button type="button" data-toggle="modal" data-target="#quickView">
-                                    <span data-toggle="tooltip" data-placement="left" title="Quick View"><i
-                                            class="fa fa-compress"></i></span>
-                                </button>
-                                <a href="wishlist.html" data-toggle="tooltip" data-placement="left"
-                                   title="Add to Wishlist"><i
-                                        class="fa fa-heart-o"></i></a>
-                                <a href="compare.html" data-toggle="tooltip" data-placement="left" title="Compare"><i
-                                        class="fa fa-tags"></i></a>
-                            </div>
-                        </div>
-                        <!-- Single Product Item -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!--== New Products Area End ==-->
-
-<!--== Testimonial Area Start ==-->
-<section id="testimonial-area">
-    <div class="ruby-container">
-        <div class="testimonial-wrapper">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <!-- Section Title Start -->
-                    <div class="section-title">
-                        <h2>What Our Customers Say</h2>
-                        <p>Testimonials from Happy Customers</p>
-                    </div>
-                    <!-- Section Title End -->
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-7 m-auto text-center">
-                    <div class="testimonial-content-wrap">
-                        <div id="testimonialCarousel" class="owl-carousel">
-                            <!-- Single Testimonial Item Start -->
-                            <div class="single-testimonial-item">
-                                <p>I absolutely love the bangles from Yadav Bangles Store! Their collection is stunning, 
-                                   and the quality is top-notch. I always find the perfect match for every occasion.</p>
-                                <h3 class="client-name">Priya Sharma</h3>
-                                <span class="client-email">priya.sharma@example.com</span>
-                            </div>
-                            <!-- Single Testimonial Item End -->
-
-                            <!-- Single Testimonial Item Start -->
-                            <div class="single-testimonial-item">
-                                <p>The cosmetics section is amazing! I found all my favorite brands in one place. 
-                                   Highly recommend visiting this shop in Aligarh.</p>
-                                <h3 class="client-name">Neha Verma</h3>
-                                <span class="client-email">neha.verma@example.com</span>
-                            </div>
-                            <!-- Single Testimonial Item End -->
-
-                            <!-- Single Testimonial Item Start -->
-                            <div class="single-testimonial-item">
-                                <p>Thank you for the beautiful poshaks! The craftsmanship is excellent, and the 
-                                   designs are so elegant. I'll definitely shop here again.</p>
-                                <h3 class="client-name">Ritika Singh</h3>
-                                <span class="client-email">ritika.singh@example.com</span>
-                            </div>
-                            <!-- Single Testimonial Item End -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!--== Testimonial Area End ==-->
-
-
-<!--== Blog Area Start ==-->
-<section id="blog-area">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <!-- Section Title Start -->
-                <div class="section-title">
-                    <h2>Our Latest Updates</h2>
-                    <p>Discover trends, tips, and updates from Yadav Bangles Store.</p>
-                </div>
-                <!-- Section Title End -->
-            </div>
-        </div>
-
-        <div class="blog-content-wrap">
-            <div class="row">
-                <!-- Blog 1 -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-blog-wrap">
-                        <figure class="blog-thumb">
-                            <a href="single-blog.html"><img src="assets/img/slide-img-1.jpg" alt="blog"
-                                class="img-fluid"/></a>
-                            <figcaption class="blog-icon">
-                                <a href="blog-bangles-trends.html"><i class="fa fa-file-image-o"></i></a>
-                            </figcaption>
-                        </figure>
-                        <div class="blog-details">
-                            <h3><a href="blog-bangles-trends.html">Top Bangle Trends for 2025</a></h3>
-                            <span class="post-date">10/Jan/2025</span>
-                            <p>Explore the latest bangle designs and trends that are perfect for weddings and festive occasions.</p>
-                            <a href="blog-bangles-trends.html" class="btn-long-arrow">Read More</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Blog 2 -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-blog-wrap">
-                        <figure class="blog-thumb">
-                            <a href="single-blog.html"><img src="assets/img/slide-img-2.jpg" alt="blog"
-                                class="img-fluid"/></a>
-                            <figcaption class="blog-icon">
-                                <a href="blog-cosmetics-care.html"><i class="fa fa-file-image-o"></i></a>
-                            </figcaption>
-                        </figure>
-                        <div class="blog-details">
-                            <h3><a href="blog-cosmetics-care.html">How to Take Care of Your Skin</a></h3>
-                            <span class="post-date">05/Jan/2025</span>
-                            <p>Discover expert tips for using our cosmetic products to keep your skin glowing and healthy.</p>
-                            <a href="blog-cosmetics-care.html" class="btn-long-arrow">Read More</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Blog 3 -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-blog-wrap">
-                        <figure class="blog-thumb">
-                            <a href="single-blog.html"><img src="assets/img/slide-img-2.jpg" alt="blog"
-                                class="img-fluid"/></a>
-                            <figcaption class="blog-icon">
-                                <a href="blog-poshak-guide.html"><i class="fa fa-file-image-o"></i></a>
-                            </figcaption>
-                        </figure>
-                        <div class="blog-details">
-                            <h3><a href="blog-poshak-guide.html">Poshak Styling Guide</a></h3>
-                            <span class="post-date">01/Jan/2025</span>
-                            <p>Learn how to style our poshaks for different occasions and create a timeless look.</p>
-                            <a href="blog-poshak-guide.html" class="btn-long-arrow">Read More</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!--== Blog Area End ==-->
-
-<!--== Newsletter Area Start ==-->
-<section id="newsletter-area" class="p-9">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <!-- Section Title Start -->
-                <div class="section-title">
-                    <h2>Stay Updated with YBS</h2>
-                    <p>Sign up for exclusive offers, new arrivals, and festival specials.</p>
-                </div>
-                <!-- Section Title End -->
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-lg-8 m-auto">
-                <div class="newsletter-form-wrap">
-                    <form id="subscribe-form" action="https://d29u17ylf1ylz9.cloudfront.net/ruby-v2/ruby/assets/php/subscribe.php" method="post">
-                        <input id="subscribe" type="email" name="email" placeholder="Enter your Email to Stay Updated" required/>
-                        <button type="submit" class="btn-long-arrow">Subscribe</button>
-                        <div id="result"></div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!--== Newsletter Area End ==-->
-
-
-<!-- Footer Area Start -->
-<footer id="footer-area">
-    <!-- Footer Call to Action Start -->
-    <div class="footer-callto-action">
-        <div class="ruby-container">
-            <div class="callto-action-wrapper">
-                <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        <!-- Single Call-to Action Start -->
-                        <div class="single-callto-action d-flex">
-                            <figure class="callto-thumb">
-                                <img src="assets/img/air-plane.png" alt="WorldWide Shipping"/>
-                            </figure>
-                            <div class="callto-info">
-                                <h2>Free Shipping on All Orders</h2>
-                                <p>For orders above ₹1500 - 7 days a week</p>
-                            </div>
-                        </div>
-                        <!-- Single Call-to Action End -->
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <!-- Single Call-to Action Start -->
-                        <div class="single-callto-action d-flex">
-                            <figure class="callto-thumb">
-                                <img src="assets/img/support.png" alt="Support"/>
-                            </figure>
-                            <div class="callto-info">
-                                <h2>24/7 CUSTOMER SUPPORT</h2>
-                                <p>Contact us anytime at 7417163092</p>
-                            </div>
-                        </div>
-                        <!-- Single Call-to Action End -->
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <!-- Single Call-to Action Start -->
-                        <div class="single-callto-action d-flex">
-                            <figure class="callto-thumb">
-                                <img src="assets/img/money-back.png" alt="Money Back"/>
-                            </figure>
-                            <div class="callto-info">
-                                <h2>MONEY BACK Guarantee!</h2>
-                                <p>Return within 30 days for a full refund</p>
-                            </div>
-                        </div>
-                        <!-- Single Call-to Action End -->
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <!-- Single Call-to Action Start -->
-                        <div class="single-callto-action d-flex">
-                            <figure class="callto-thumb">
-                                <img src="assets/img/cog.png" alt="Guide"/>
-                            </figure>
-                            <div class="callto-info">
-                                <h2>SHOPPING GUIDE</h2>
-                                <p>Get assistance with your shopping experience</p>
-                            </div>
-                        </div>
-                        <!-- Single Call-to Action End -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Footer Call to Action End -->
-
-    <!-- Footer Follow Up Area Start -->
-    <div class="footer-followup-area">
-        <div class="ruby-container">
-            <div class="followup-wrapper">
-                <div class="row">
-                    <div class="col-lg-12 text-center">
-                        <div class="follow-content-wrap">
-                            <a href="index.html" class="logo">
-                                <h4 style="color: white;">Yadav Bangles Store (YBS)</h4>
-                            </a> 
-                            
-                            <p>Your one-stop shop for God Costumes (Poshaks), Fancy Bangles, Cosmetics & Festival Essentials.</p>
-
-                            <div class="footer-social-icons">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-pinterest"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                                <a href="#"><i class="fa fa-flickr"></i></a>
-                            </div>
-
-                            <a href="#"><img src="assets/img/payment.png" alt="Payment Method"/></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Footer Follow Up Area End -->
-
-    <!-- Footer Image Gallery Area Start -->
-    <div class="footer-image-gallery">
-        <div class="ruby-container">
-            <div class="image-gallery-wrapper">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="imgage-gallery-carousel owl-carousel">
-                            <div class="gallery-item">
-                                <a href="#"><img src="assets/img/gallery-img-1.jpg" alt="Gallery"/></a>
-                            </div>
-                            <div class="gallery-item">
-                                <a href="#"><img src="assets/img/gallery-img-2.jpg" alt="Gallery"/></a>
-                            </div>
-                            <div class="gallery-item">
-                                <a href="#"><img src="assets/img/gallery-img-3.jpg" alt="Gallery"/></a>
-                            </div>
-                            <div class="gallery-item">
-                                <a href="#"><img src="assets/img/gallery-img-4.jpg" alt="Gallery"/></a>
-                            </div>
-                            <div class="gallery-item">
-                                <a href="#"><img src="assets/img/gallery-img-5.jpg" alt="Gallery"/></a>
-                            </div>
-                            <div class="gallery-item">
-                                <a href="#"><img src="assets/img/gallery-img-6.jpg" alt="Gallery"/></a>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Footer Image Gallery Area End -->
+                `;
+                grid.innerHTML += productCard;
+            });
+        }
 
-    <!-- Copyright Area Start -->
-    <div class="copyright-area">
-        <div class="ruby-container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="copyright-text">
-                        <p>© 2025 Yadav Bangles Store. All Rights Reserved.</p>
+        // Generate star rating
+        function generateStars(rating) {
+            const fullStars = Math.floor(rating);
+            const hasHalfStar = rating % 1 !== 0;
+            let stars = '';
+
+            for (let i = 0; i < fullStars; i++) {
+                stars += '<i class="fas fa-star star"></i>';
+            }
+
+            if (hasHalfStar) {
+                stars += '<i class="fas fa-star-half-alt star"></i>';
+            }
+
+            const emptyStars = 5 - Math.ceil(rating);
+            for (let i = 0; i < emptyStars; i++) {
+                stars += '<i class="far fa-star star"></i>';
+            }
+
+            return stars;
+        }
+
+        // Show product tab
+        function showProductTab(category) {
+            // Update active tab
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Filter and render products
+            if (category === 'all') {
+                renderProducts(products);
+            } else {
+                const filtered = products.filter(p => p.category === category);
+                renderProducts(filtered);
+            }
+        }
+
+        // Show category
+        function showCategory(category) {
+            document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+            setTimeout(() => {
+                showProductTab(category);
+            }, 500);
+        }
+
+        // Add to cart
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existingItem = cart.find(item => item.id === productId);
+
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+
+            updateCartCount();
+            showNotification(`${product.name} added to cart!`, 'success');
+        }
+
+        // Toggle wishlist
+        function toggleWishlist(productId) {
+            const product = products.find(p => p.id === productId);
+            const index = wishlist.findIndex(item => item.id === productId);
+
+            if (index > -1) {
+                wishlist.splice(index, 1);
+                showNotification(`${product.name} removed from wishlist`, 'error');
+            } else {
+                wishlist.push(product);
+                showNotification(`${product.name} added to wishlist!`, 'success');
+            }
+
+            updateWishlistCount();
+        }
+
+        // Update cart count
+        function updateCartCount() {
+            const count = cart.reduce((total, item) => total + item.quantity, 0);
+            document.getElementById('cartCount').textContent = count;
+        }
+
+        // Update wishlist count
+        function updateWishlistCount() {
+            document.getElementById('wishlistCount').textContent = wishlist.length;
+        }
+
+        // Quick view product
+        function quickView(productId) {
+            const product = products.find(p => p.id === productId);
+            const discount = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
+            const stars = generateStars(product.rating);
+
+            const modalBody = document.getElementById('productModalBody');
+            modalBody.innerHTML = `
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start;">
+                    <div>
+                        <img src="${product.image}" alt="${product.name}" style="width: 100%; border-radius: 12px;">
+                    </div>
+                    <div>
+                        <h3 style="font-size: 24px; margin-bottom: 12px; color: var(--dark-color);">${product.name}</h3>
+                        <div class="product-rating" style="margin-bottom: 16px;">
+                            ${stars}
+                            <span class="rating-text">(${product.reviews} reviews)</span>
+                        </div>
+                        <div class="product-price" style="margin-bottom: 20px;">
+                            <span class="current-price" style="font-size: 28px;">₹${product.price}</span>
+                            <span class="original-price" style="font-size: 18px;">₹${product.originalPrice}</span>
+                            <span class="discount" style="font-size: 14px;">${discount}% OFF</span>
+                        </div>
+                        <p style="color: var(--grey-600); margin-bottom: 24px; line-height: 1.6;">${product.description}</p>
+                        <div style="display: flex; gap: 12px;">
+                            <button onclick="addToCart(${product.id}); closeModal('productModal');" class="btn btn-primary" style="flex: 1;">
+                                <i class="fas fa-shopping-bag"></i> Add to Cart
+                            </button>
+                            <button onclick="bookProduct('${product.name}', ${product.price})" class="btn btn-outline">
+                                <i class="fab fa-whatsapp"></i> Order Now
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    <!-- Copyright Area End -->
+            `;
 
-</footer>
-<!-- Footer Area End -->
+            openModal('productModal');
+        }
 
+        // Book product
+        function bookProduct(productName, price) {
+            document.querySelector('[name="productName"]').value = productName;
+            closeModal('productModal');
+            openModal('bookingModal');
+        }
 
+        // Open modal
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
 
-<!-- Start All Modal Content -->
-<!--== Product Quick View Modal Area Wrap ==-->
-<div class="modal fade" id="quickView" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true"><img src="assets/img/cancel.png" alt="Close" class="img-fluid"/></span>
-            </button>
-            <div class="modal-body">
-                <div class="quick-view-content single-product-page-content">
-                    <div class="row">
-                        <!-- Product Thumbnail Start -->
-                        <div class="col-lg-5 col-md-6">
-                            <div class="product-thumbnail-wrap">
-                                <div class="product-thumb-carousel owl-carousel">
-                                    <div class="single-thumb-item">
-                                        <a href="single-product.html"><img class="img-fluid" src="assets/img/single-pro-thumb.jpg" alt="Product"/></a>
-                                    </div>
-                                    <div class="single-thumb-item">
-                                        <a href="single-product.html"><img class="img-fluid" src="assets/img/single-pro-thumb-2.jpg" alt="Product"/></a>
-                                    </div>
-                                    <div class="single-thumb-item">
-                                        <a href="single-product.html"><img class="img-fluid" src="assets/img/single-pro-thumb-3.jpg" alt="Product"/></a>
-                                    </div>
-                                    <div class="single-thumb-item">
-                                        <a href="single-product.html"><img class="img-fluid" src="assets/img/single-pro-thumb-4.jpg" alt="Product"/></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Product Thumbnail End -->
+        // Close modal
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
 
-                        <!-- Product Details Start -->
-                        <div class="col-lg-7 col-md-6 mt-5 mt-md-0">
-                            <div class="product-details">
-                                <h2><a href="single-product.html">Divine God Costume (Poshak)</a></h2>
+        // Submit order
+        function submitOrder(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const orderData = {
+                customerName: formData.get('customerName'),
+                customerPhone: formData.get('customerPhone'),
+                customerAddress: formData.get('customerAddress'),
+                productName: formData.get('productName'),
+                quantity: formData.get('quantity'),
+                specialRequests: formData.get('specialRequests')
+            };
 
-                                <div class="rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-half"></i>
-                                    <i class="fa fa-star-o"></i>
-                                </div>
+            // Create WhatsApp message
+            const message = `🛍️ *New Order from Yadav Bangles Store*
 
-                                <span class="price">$99.00</span>
+👤 *Customer Details:*
+Name: ${orderData.customerName}
+Phone: ${orderData.customerPhone}
+Address: ${orderData.customerAddress}
 
-                                <div class="product-info-stock-sku">
-                                    <span class="product-stock-status">In Stock</span>
-                                    <span class="product-sku-status ml-5"><strong>SKU</strong> PHS03</span>
-                                </div>
+🛒 *Order Details:*
+Product: ${orderData.productName}
+Quantity: ${orderData.quantity}
+${orderData.specialRequests ? `Special Requests: ${orderData.specialRequests}` : ''}
 
-                                <p class="products-desc">A beautiful Poshak designed for worship and celebration. Made with high-quality fabric and detailed embroidery, it is perfect for all your religious and cultural occasions. Ideal for festivals like Diwali, Holi, and more.</p>
-                                
-                                <!-- Color Option (if applicable) -->
-                                <div class="shopping-option-item">
-                                    <h4>Color</h4>
-                                    <ul class="color-option-select d-flex">
-                                        <li class="color-item red">
-                                            <div class="color-hvr">
-                                                <span class="color-fill"></span>
-                                                <span class="color-name">Red</span>
-                                            </div>
-                                        </li>
+📱 *Ordered via Website*
+⏰ ${new Date().toLocaleString()}
 
-                                        <li class="color-item golden">
-                                            <div class="color-hvr">
-                                                <span class="color-fill"></span>
-                                                <span class="color-name">Golden</span>
-                                            </div>
-                                        </li>
+Thank you for choosing Yadav Bangles Store! 🙏`;
 
-                                        <li class="color-item white">
-                                            <div class="color-hvr">
-                                                <span class="color-fill"></span>
-                                                <span class="color-name">White</span>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
+            // Open WhatsApp
+            const whatsappURL = `https://wa.me/917417163092?text=${encodeURIComponent(message)}`;
+            window.open(whatsappURL, '_blank');
+            
+            // Close modal and reset form
+            closeModal('bookingModal');
+            event.target.reset();
+            showNotification('Order details sent to WhatsApp! We will contact you soon.', 'success');
+        }
 
-                                <!-- Quantity and Add to Cart -->
-                                <div class="product-quantity d-flex align-items-center">
-                                    <div class="quantity-field">
-                                        <label for="qty">Qty</label>
-                                        <input type="number" id="qty" min="1" max="100" value="1"/>
-                                    </div>
+        // Newsletter subscription
+        function subscribeNewsletter(event) {
+            event.preventDefault();
+            const email = event.target.querySelector('input[type="email"]').value;
+            
+            if (email) {
+                showNotification('Thank you for subscribing to our newsletter!', 'success');
+                event.target.reset();
+            }
+        }
 
-                                    <a href="cart.html" class="btn btn-add-to-cart">Add to Cart</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Product Details End -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!--== Product Quick View Modal Area End ==-->
-<!-- End All Modal Content -->
+        // Show notification
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            document.body.appendChild(notification);
 
+            setTimeout(() => {
+                notification.remove();
+            }, 4000);
+        }
 
-<!-- Scroll to Top Start -->
-<a href="#" class="scrolltotop"><i class="fa fa-angle-up"></i></a>
-<!-- Scroll to Top End -->
+        // Open cart
+        function openCart() {
+            if (cart.length === 0) {
+                showNotification('Your cart is empty', 'error');
+                return;
+            }
+            
+            // For now, show cart items in notification
+            const cartSummary = cart.map(item => `${item.name} (${item.quantity})`).join(', ');
+            showNotification(`Cart: ${cartSummary}`, 'success');
+        }
 
+        // Open wishlist
+        function openWishlist() {
+            if (wishlist.length === 0) {
+                showNotification('Your wishlist is empty', 'error');
+                return;
+            }
+            
+            // For now, show wishlist items in notification
+            const wishlistSummary = wishlist.map(item => item.name).join(', ');
+            showNotification(`Wishlist: ${wishlistSummary}`, 'success');
+        }
 
-<!--=======================Javascript============================-->
-<!--=== Jquery Min Js ===-->
-<script src="assets/js/vendor/jquery-3.3.1.min.js"></script>
-<!--=== Jquery Migrate Min Js ===-->
-<script src="assets/js/vendor/jquery-migrate-1.4.1.min.js"></script>
-<!--=== Popper Min Js ===-->
-<script src="assets/js/vendor/popper.min.js"></script>
-<!--=== Bootstrap Min Js ===-->
-<script src="assets/js/vendor/bootstrap.min.js"></script>
-<!--=== Plugins Min Js ===-->
-<script src="assets/js/plugins.js"></script>
+        // Close modals when clicking outside
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('modal')) {
+                closeModal(e.target.id);
+            }
+        });
 
-<!--=== Active Js ===-->
-<script src="assets/js/active.js"></script>
+        // Handle escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal.show').forEach(modal => {
+                    closeModal(modal.id);
+                });
+            }
+        });
+
+        // Search functionality initialization
+        document.addEventListener('DOMContentLoaded', function() {
+            // Search on enter
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                // Remove old event listeners by cloning the element
+                const newSearchInput = searchInput.cloneNode(true);
+                searchInput.parentNode.replaceChild(newSearchInput, searchInput);
+                
+                // Add new working event listeners
+                newSearchInput.addEventListener('keyup', function(e) {
+                    if (e.key === 'Enter') performSearch();
+                });
+                newSearchInput.addEventListener('input', function() {
+                    clearTimeout(window.searchTimer);
+                    window.searchTimer = setTimeout(performSearch, 300);
+                });
+            }
+            
+            // Initialize with all products
+            renderProducts(products);
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        console.log('Yadav Bangles Store - Nykaa Style Website Loaded! 🎉');
+        
+        // Simple working search function - FIXED VERSION
+        function performSearch() {
+            const searchInput = document.getElementById('searchInput');
+            const query = searchInput ? searchInput.value.toLowerCase().trim() : '';
+            
+            // Get all product cards
+            const products = document.querySelectorAll('.product-card');
+            let visibleCount = 0;
+            
+            products.forEach(product => {
+                const title = product.querySelector('h3')?.textContent.toLowerCase() || '';
+                const category = product.getAttribute('data-category')?.toLowerCase() || '';
+                
+                if (query === '' || title.includes(query) || category.includes(query)) {
+                    product.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+            
+            // Handle no results
+            let noResultsDiv = document.querySelector('.no-results');
+            if (visibleCount === 0 && query !== '') {
+                if (!noResultsDiv) {
+                    noResultsDiv = document.createElement('div');
+                    noResultsDiv.className = 'no-results';
+                    noResultsDiv.style.cssText = 'grid-column: 1/-1; text-align: center; padding: 40px; color: #666;';
+                    noResultsDiv.innerHTML = `
+                        <i class="fas fa-search" style="font-size: 48px; margin-bottom: 16px; display: block;"></i>
+                        <h3>No products found for "${query}"</h3>
+                        <p>Try "bangles", "poshak", "cosmetics", or "festival"</p>
+                        <button onclick="clearSearch()" style="margin-top: 15px; padding: 8px 16px; background: #e91e63; color: white; border: none; border-radius: 5px; cursor: pointer;">Show All</button>
+                    `;
+                    document.getElementById('productsGrid').appendChild(noResultsDiv);
+                }
+            } else if (noResultsDiv) {
+                noResultsDiv.remove();
+            }
+        }
+
+        function clearSearch() {
+            document.getElementById('searchInput').value = '';
+            performSearch();
+        }
+
+        // Override the old search with new working version
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                // Remove old event listeners by cloning the element
+                const newSearchInput = searchInput.cloneNode(true);
+                searchInput.parentNode.replaceChild(newSearchInput, searchInput);
+                
+                // Add new working event listeners
+                newSearchInput.addEventListener('keyup', function(e) {
+                    if (e.key === 'Enter') performSearch();
+                });
+                newSearchInput.addEventListener('input', function() {
+                    clearTimeout(window.searchTimer);
+                    window.searchTimer = setTimeout(performSearch, 300);
+                });
+            }
+        });
+    </script>
 </body>
-
 </html>
+
+<script>
+function searchNow() {
+    const query = document.getElementById('searchInput').value.toLowerCase();
+    const products = document.querySelectorAll('.product-card');
+    let found = 0;
+    
+    products.forEach(product => {
+        const title = product.querySelector('h3').textContent.toLowerCase();
+        const category = product.getAttribute('data-category').toLowerCase();
+        
+        if (query === '' || title.includes(query) || category.includes(query)) {
+            product.style.display = 'block';
+            found++;
+        } else {
+            product.style.display = 'none';
+        }
+    });
+    
+    // Handle no results
+    const grid = document.getElementById('productsGrid');
+    let noMsg = grid.querySelector('.no-search-results');
+    
+    if (found === 0 && query !== '') {
+        if (!noMsg) {
+            noMsg = document.createElement('div');
+            noMsg.className = 'no-search-results';
+            noMsg.innerHTML = `
+                <div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #666;">
+                    <h3>No products found for "${query}"</h3>
+                    <p>Try searching: bangles, poshak, cosmetics, festival</p>
+                    <button onclick="clearSearchNow()" style="padding: 10px 20px; background: #e91e63; color: white; border: none; border-radius: 5px; margin-top: 15px; cursor: pointer;">Show All Products</button>
+                </div>
+            `;
+            grid.appendChild(noMsg);
+        }
+    } else if (noMsg) {
+        noMsg.remove();
+    }
+}
+
+function clearSearchNow() {
+    document.getElementById('searchInput').value = '';
+    searchNow();
+}
+</script>
