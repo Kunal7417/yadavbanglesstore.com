@@ -72,14 +72,24 @@
         <!-- Navigation -->
         <nav class="nav-bar">
             <div class="container">
-                <div class="nav-content">
-                    <a href="#home" class="nav-link active" onclick="setActiveNav(this)">Home</a>
-                    <a href="#" class="nav-link" onclick="showCategory('bangles'); setActiveNav(this)">Bangles & Churis</a>
-                    <a href="#" class="nav-link" onclick="showCategory('poshaks'); setActiveNav(this)">God Poshaks</a>
-                    <a href="#" class="nav-link" onclick="showCategory('cosmetics'); setActiveNav(this)">Beauty & Cosmetics</a>
-                    <a href="#" class="nav-link" onclick="showCategory('festival'); setActiveNav(this)">Festival Items</a>
-                    <a href="#about" class="nav-link" onclick="setActiveNav(this)">About Us</a>
-                    <a href="#contact" class="nav-link" onclick="setActiveNav(this)">Contact</a>
+                <!-- Mobile Navigation Toggle -->
+                <button class="mobile-nav-toggle" id="mobileNavToggle" onclick="toggleMobileNav()">
+                    <i class="fas fa-bars menu-icon"></i>
+                    <i class="fas fa-times close-icon"></i>
+                </button>
+                
+                <!-- Navigation Overlay (Mobile) -->
+                <div class="nav-overlay" id="navOverlay" onclick="closeMobileNav()"></div>
+                
+                <!-- Navigation Content -->
+                <div class="nav-content" id="navContent">
+                    <a href="#home" class="nav-link active" onclick="setActiveNav(this); closeMobileNav()">Home</a>
+                    <a href="#" class="nav-link" onclick="showCategory('bangles'); setActiveNav(this); closeMobileNav()">Bangles & Churis</a>
+                    <a href="#" class="nav-link" onclick="showCategory('poshaks'); setActiveNav(this); closeMobileNav()">God Poshaks</a>
+                    <a href="#" class="nav-link" onclick="showCategory('cosmetics'); setActiveNav(this); closeMobileNav()">Beauty & Cosmetics</a>
+                    <a href="#" class="nav-link" onclick="showCategory('festival'); setActiveNav(this); closeMobileNav()">Festival Items</a>
+                    <a href="#about" class="nav-link" onclick="setActiveNav(this); closeMobileNav()">About Us</a>
+                    <a href="#contact" class="nav-link" onclick="setActiveNav(this); closeMobileNav()">Contact</a>
                 </div>
             </div>
         </nav>
