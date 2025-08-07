@@ -732,6 +732,13 @@ Thank you! 🙏`;
 function setActiveNav(element) {
     document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
     element.classList.add('active');
+    
+    // Close mobile nav after selection on mobile devices
+    if (window.innerWidth <= 768) {
+        setTimeout(() => {
+            closeMobileNav();
+        }, 100);
+    }
 }
 
 // Scroll handling
@@ -948,7 +955,71 @@ document.addEventListener('click', function(e) {
     }
 });
 
+// Mobile Navigation Functions
+function toggleMobileNav() {
+    const navContent = document.getElementById('navContent');
+    const navOverlay = document.getElementById('navOverlay');
+    const navToggle = document.getElementById('mobileNavToggle');
+    
+    navContent.classList.toggle('active');
+    navOverlay.classList.toggle('active');
+    navToggle.classList.toggle('active');
+    
+    // Prevent body scroll when nav is open
+    if (navContent.classList.contains('active')) {
+        document.body.style.overflow = 'hidden';
+    } else {
+        document.body.style.overflow = 'auto';
+    }
+}
+
+function closeMobileNav() {
+    const navContent = document.getElementById('navContent');
+    const navOverlay = document.getElementById('navOverlay');
+    const navToggle = document.getElementById('mobileNavToggle');
+    
+    navContent.classList.remove('active');
+    navOverlay.classList.remove('active');
+    navToggle.classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
+// Close mobile nav when clicking outside or pressing escape
+document.addEventListener('click', function(e) {
+    const navContent = document.getElementById('navContent');
+    const navToggle = document.getElementById('mobileNavToggle');
+    
+    if (navContent && navContent.classList.contains('active')) {
+        if (!navContent.contains(e.target) && !navToggle.contains(e.target)) {
+            closeMobileNav();
+        }
+    }
+});
+
+// Enhanced escape key handler for mobile nav
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        const activeModal = document.querySelector('.modal.show');
+        const navContent = document.getElementById('navContent');
+        
+        if (activeModal) {
+            closeModal(activeModal.id);
+        } else if (navContent && navContent.classList.contains('active')) {
+            closeMobileNav();
+        }
+        
+        hideSearchSuggestions();
+    }
+});
+
+// Handle window resize for mobile nav
+window.addEventListener('resize', function() {
+    if (window.innerWidth > 768) {
+        closeMobileNav();
+    }
+});
+
 // Final initialization
 console.log('Yadav Bangles Store website initialized successfully! 🎉');
-console.log('Features loaded: Search, Cart, Wishlist, Modals, Responsive Design');
+console.log('Features loaded: Search, Cart, Wishlist, Modals, Responsive Design, Mobile Navigation');
 console.log('Contact: +91 7417163092 | Location: Jaiganj, Aligarh'); 
