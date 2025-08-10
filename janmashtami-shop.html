@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Complete Janmashtami Shopping Collection - Laddu Gopal Poshaks, Mukut, Bansuri, Palka, Sinhasan, Mala & More | Yadav Bangles Store">
+    <meta name="keywords" content="janmashtami, laddu gopal, poshak, mukut, bansuri, palka, sinhasan, mala, krishna, janmashtami shopping">
+    <title>🕉️ Janmashtami Special Collection | Complete Laddu Gopal Shopping | Yadav Bangles Store</title>
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕉️</text></svg>" type="image/svg+xml">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    
+    <!-- Page Specific Styles -->
+    <style>
+        .janmashtami-hero {
+            background: linear-gradient(135deg, #ff9800, #f57c00, #e65100);
+            padding: 80px 0 60px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .janmashtami-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="20" fill="rgba(255,255,255,0.1)">🕉️</text></svg>') repeat;
+            opacity: 0.3;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            display: block;
+        }
+        
+        .category-section {
+            padding: 60px 0;
+        }
+        
+        .category-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .category-title {
+            font-size: 2.5rem;
+            color: #e65100;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .category-description {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .product-image {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #e65100;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .discount-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #4caf50;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .product-info {
+            padding: 1.5rem;
+        }
+        
+        .product-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-description {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+        
+        .product-price {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .current-price {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #e65100;
+        }
+        
+        .original-price {
+            font-size: 1rem;
+            color: #999;
+            text-decoration: line-through;
+        }
+        
+        .product-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .btn-primary {
+            flex: 1;
+            background: #e65100;
+            color: white;
+            border: none;
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: #d84315;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: #f5f5f5;
+            color: #666;
+            border: none;
+            padding: 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+        
+        .floating-cart {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #e65100;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 50px;
+            box-shadow: 0 8px 30px rgba(230,81,0,0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .floating-cart:hover {
+            transform: scale(1.05);
+        }
+        
+        .cart-count {
+            background: white;
+            color: #e65100;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-left: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .category-title {
+                font-size: 2rem;
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <div class="container">
+                🕉️ Janmashtami Special Week! 15% OFF on all Laddu Gopal Items | Call: +91 7417163092 | Free Delivery in Aligarh! 🎊
+            </div>
+        </div>
+
+        <!-- Main Header -->
+        <div class="header-main">
+            <div class="container">
+                <div class="header-content">
+                    <!-- Logo -->
+                    <a href="index.html" class="logo">
+                        <i class="fas fa-gem"></i>
+                        Yadav Bangles Store
+                    </a>
+
+                    <!-- Search -->
+                    <div class="search-container">
+                        <input type="text" class="search-box" placeholder="Search Janmashtami items..." id="searchInput">
+                        <button class="search-btn" onclick="performSearch()">
+                            <i class="fas fa-search"></i>
+                        </button>
+                        <div class="search-suggestions" id="searchSuggestions"></div>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="header-actions">
+                        <div class="header-action" onclick="openWishlist()">
+                            <i class="fas fa-heart"></i>
+                            <span class="badge" id="wishlistCount">0</span>
+                        </div>
+                        <div class="header-action" onclick="openCart()">
+                            <i class="fas fa-shopping-bag"></i>
+                            <span class="badge" id="cartCount">0</span>
+                        </div>
+                        <button class="mobile-nav-toggle" onclick="toggleMobileNav()">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="janmashtami-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">🕉️ Complete Janmashtami Collection 🕉️</h1>
+                <p class="hero-subtitle">Everything you need for Laddu Gopal - Poshaks, Mukut, Bansuri, Palka, Sinhasan, Mala & More!</p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">50+</span>
+                        <span>Products</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">15%</span>
+                        <span>OFF Everything</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">FREE</span>
+                        <span>Delivery in Aligarh</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Poshaks Section -->
+    <section class="category-section">
+        <div class="container">
+            <div class="category-header">
+                <h2 class="category-title">
+                    <span>👘</span>
+                    <span>Divine Poshaks Collection</span>
+                </h2>
+                <p class="category-description">Beautiful handcrafted dresses for Laddu Gopal in various themes and styles</p>
+            </div>
+            <div class="products-grid" id="poshaksGrid">
+                <!-- Products will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Accessories Section -->
+    <section class="category-section" style="background: #f8f9fa;">
+        <div class="container">
+            <div class="category-header">
+                <h2 class="category-title">
+                    <span>👑</span>
+                    <span>Royal Accessories</span>
+                </h2>
+                <p class="category-description">Complete your Laddu Gopal's look with crowns, jewelry, and royal accessories</p>
+            </div>
+            <div class="products-grid" id="accessoriesGrid">
+                <!-- Accessories will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Musical Items Section -->
+    <section class="category-section">
+        <div class="container">
+            <div class="category-header">
+                <h2 class="category-title">
+                    <span>🎵</span>
+                    <span>Musical & Spiritual Items</span>
+                </h2>
+                <p class="category-description">Flutes, bells, and spiritual items for complete Krishna worship</p>
+            </div>
+            <div class="products-grid" id="musicalGrid">
+                <!-- Musical items will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Home Decor Section -->
+    <section class="category-section" style="background: #f8f9fa;">
+        <div class="container">
+            <div class="category-header">
+                <h2 class="category-title">
+                    <span>🏛️</span>
+                    <span>Sinhasan & Home Decor</span>
+                </h2>
+                <p class="category-description">Beautiful thrones, beds, and decorative items for Laddu Gopal's home</p>
+            </div>
+            <div class="products-grid" id="decorGrid">
+                <!-- Decor items will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Cart -->
+    <div class="floating-cart" onclick="openCart()">
+        <i class="fas fa-shopping-cart"></i>
+        <span>Cart</span>
+        <span class="cart-count" id="floatingCartCount">0</span>
+    </div>
+
+    <!-- Footer -->
+    <footer style="background: #333; color: white; padding: 40px 0; text-align: center;">
+        <div class="container">
+            <div style="margin-bottom: 20px;">
+                <h3 style="color: #ff9800; margin-bottom: 10px;">🕉️ Jai Shri Krishna! 🕉️</h3>
+                <p>Complete your Janmashtami celebration with our divine collection</p>
+            </div>
+            <div style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 20px; flex-wrap: wrap;">
+                <div>
+                    <i class="fas fa-phone" style="color: #ff9800;"></i>
+                    <span style="margin-left: 8px;">+91 7417163092</span>
+                </div>
+                <div>
+                    <i class="fas fa-map-marker-alt" style="color: #ff9800;"></i>
+                    <span style="margin-left: 8px;">Jaiganj, Aligarh, UP</span>
+                </div>
+                <div>
+                    <i class="fas fa-truck" style="color: #ff9800;"></i>
+                    <span style="margin-left: 8px;">Free Delivery in Aligarh</span>
+                </div>
+            </div>
+            <p style="opacity: 0.8;">&copy; 2025 Yadav Bangles Store. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('productModal')">&times;</span>
+            <div id="productModalBody">
+                <!-- Product details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="assets/js/main.js"></script>
+    <script>
+        // Extended product data for Janmashtami page
+        const janmashtamiProducts = [
+            // Accessories
+            {
+                id: 101,
+                name: 'Golden Mukut (Crown)',
+                category: 'accessories',
+                price: 127,
+                originalPrice: 150,
+                description: 'Beautiful golden crown for Laddu Gopal with intricate designs and peacock feathers.',
+                image: 'assets/img/mukut1.jpeg',
+                badge: 'Royal'
+            },
+            {
+                id: 102,
+                name: 'Silver Mala (Necklace)',
+                category: 'accessories', 
+                price: 85,
+                originalPrice: 100,
+                description: 'Elegant silver necklace with small bells for Laddu Gopal.',
+                image: 'assets/img/mala1.jpg',
+                badge: 'Premium'
+            },
+            {
+                id: 103,
+                name: 'Kundan Jewelry Set',
+                category: 'accessories',
+                price: 170,
+                originalPrice: 200,
+                description: 'Complete kundan jewelry set including earrings, necklace, and bangles.',
+                image: 'assets/img/laddugopal3.jpg',
+                badge: 'Luxury'
+            },
+            {
+                id: 104,
+                name: 'Premium Golden Mukut',
+                category: 'accessories',
+                price: 170,
+                originalPrice: 200,
+                description: 'Premium quality golden crown with precious stones and intricate peacock design.',
+                image: 'assets/img/mukut1.jpeg',
+                badge: 'Premium'
+            },
+            {
+                id: 105,
+                name: 'Traditional Tulsi Mala',
+                category: 'accessories',
+                price: 64,
+                originalPrice: 75,
+                description: 'Sacred tulsi mala with 108 beads for Laddu Gopal, blessed and energized.',
+                image: 'assets/img/mala1.jpg',
+                badge: 'Sacred'
+            },
+            // Musical Items
+            {
+                id: 201,
+                name: 'Wooden Bansuri (Flute)',
+                category: 'musical',
+                price: 64,
+                originalPrice: 75,
+                description: 'Handcrafted wooden flute for Laddu Gopal with beautiful carvings.',
+                image: 'assets/img/bansuri1.jpeg',
+                badge: 'Handmade'
+            },
+            {
+                id: 202,
+                name: 'Brass Ghanti (Bell)',
+                category: 'musical',
+                price: 42,
+                originalPrice: 50,
+                description: 'Pure brass bell with melodious sound for aarti and prayers.',
+                image: 'assets/img/ghanti.jpeg',
+                badge: 'Traditional'
+            },
+            {
+                id: 203,
+                name: 'Manjira (Small Cymbals)',
+                category: 'musical',
+                price: 76,
+                originalPrice: 90,
+                description: 'Small brass cymbals for bhajan and kirtan with Laddu Gopal.',
+                image: 'assets/img/manjira.jpeg',
+                badge: 'Devotional'
+            },
+            {
+                id: 204,
+                name: 'Silver Bansuri (Premium)',
+                category: 'musical',
+                price: 127,
+                originalPrice: 150,
+                description: 'Premium silver-plated flute with melodious sound, perfect for Krishna worship.',
+                image: 'assets/img/bansuri1.jpeg',
+                badge: 'Premium'
+            },
+            {
+                id: 205,
+                name: 'Premium Brass Ghanti',
+                category: 'musical',
+                price: 64,
+                originalPrice: 75,
+                description: 'High-quality brass bell with crystal clear sound, perfect for temple aarti and daily prayers.',
+                image: 'assets/img/ghanti.jpeg',
+                badge: 'Premium'
+            },
+            {
+                id: 206,
+                name: 'Traditional Manjira Set',
+                category: 'musical',
+                price: 102,
+                originalPrice: 120,
+                description: 'Authentic brass manjira cymbals with perfect pitch for devotional music and bhajan sessions.',
+                image: 'assets/img/manjira.jpeg',
+                badge: 'Traditional'
+            },
+            // Home Decor
+            {
+                id: 301,
+                name: 'Royal Sinhasan (Throne)',
+                category: 'decor',
+                price: 425,
+                originalPrice: 500,
+                description: 'Magnificent wooden throne with golden finish and velvet cushioning.',
+                image: 'assets/img/sinhasan.jpg',
+                badge: 'Royal'
+            },
+            {
+                id: 302,
+                name: 'Silk Palka (Swing)',
+                category: 'decor',
+                price: 255,
+                originalPrice: 300,
+                description: 'Beautiful silk swing with golden chains and decorative elements.',
+                image: 'assets/img/palana.png',
+                badge: 'Elegant'
+            },
+            {
+                id: 303,
+                name: 'Miniature Bed Set',
+                category: 'decor',
+                price: 170,
+                originalPrice: 200,
+                description: 'Complete bed set with mattress, pillow, and decorative sheet.',
+                image: 'assets/img/bed.webp',
+                badge: 'Comfort'
+            },
+            {
+                id: 304,
+                name: 'Premium Golden Sinhasan',
+                category: 'decor',
+                price: 595,
+                originalPrice: 700,
+                description: 'Luxurious golden throne with intricate carvings, premium velvet cushions and royal finish.',
+                image: 'assets/img/sinhasan.jpg',
+                badge: 'Luxury'
+            },
+            {
+                id: 305,
+                name: 'Traditional Wooden Palka',
+                category: 'decor',
+                price: 340,
+                originalPrice: 400,
+                description: 'Handcrafted wooden swing with traditional designs, perfect for Krishna jhula celebration.',
+                image: 'assets/img/palana.png',
+                badge: 'Traditional'
+            },
+            {
+                id: 306,
+                name: 'Deluxe Comfort Bed',
+                category: 'decor',
+                price: 212,
+                originalPrice: 250,
+                description: 'Premium bed set with silk sheets, soft pillows and decorative elements for Laddu Gopal.',
+                image: 'assets/img/bed.webp',
+                badge: 'Premium'
+            }
+        ];
+
+        // Load products when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            loadJanmashtamiProducts();
+            updateCartCount();
+            updateWishlistCount();
+        });
+
+        function loadJanmashtamiProducts() {
+            // Load Poshaks (from main.js)
+            const poshaks = products.filter(p => p.category === 'poshaks' && p.badge === 'Janmashtami Special');
+            renderProductsInGrid(poshaks, 'poshaksGrid');
+
+            // Load Accessories
+            const accessories = janmashtamiProducts.filter(p => p.category === 'accessories');
+            renderProductsInGrid(accessories, 'accessoriesGrid');
+
+            // Load Musical Items
+            const musical = janmashtamiProducts.filter(p => p.category === 'musical');
+            renderProductsInGrid(musical, 'musicalGrid');
+
+            // Load Decor Items
+            const decor = janmashtamiProducts.filter(p => p.category === 'decor');
+            renderProductsInGrid(decor, 'decorGrid');
+        }
+
+        function renderProductsInGrid(products, gridId) {
+            const grid = document.getElementById(gridId);
+            grid.innerHTML = '';
+
+            products.forEach(product => {
+                const discount = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
+                
+                const productCard = `
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="${product.image}" alt="${product.name}" loading="lazy">
+                            <div class="product-badge">${product.badge}</div>
+                            <div class="discount-badge">${discount}% OFF</div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">${product.name}</h3>
+                            <p class="product-description">${product.description}</p>
+                            <div class="product-price">
+                                <span class="current-price">₹${product.price}</span>
+                                <span class="original-price">₹${product.originalPrice}</span>
+                            </div>
+                            <div class="product-actions">
+                                <button class="btn-primary" onclick="addToCart(${product.id})">
+                                    <i class="fas fa-shopping-bag"></i> Add to Cart
+                                </button>
+                                <button class="btn-secondary" onclick="quickView(${product.id})">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn-secondary" onclick="toggleWishlist(${product.id})">
+                                    <i class="fas fa-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                grid.innerHTML += productCard;
+            });
+        }
+
+        // Update floating cart count
+        function updateFloatingCartCount() {
+            const count = cart.reduce((total, item) => total + item.quantity, 0);
+            document.getElementById('floatingCartCount').textContent = count;
+        }
+
+        // Override the updateCartCount function to also update floating cart
+        const originalUpdateCartCount = updateCartCount;
+        updateCartCount = function() {
+            originalUpdateCartCount();
+            updateFloatingCartCount();
+        };
+    </script>
+</body>
+</html> 

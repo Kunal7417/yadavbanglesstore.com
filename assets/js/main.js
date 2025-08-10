@@ -662,7 +662,17 @@ function showCategory(category) {
 
 // Enhanced add to cart
 function addToCart(productId) {
-    const product = products.find(p => p.id === productId);
+    // Look in both main products and janmashtami products (if available)
+    let product = products.find(p => p.id === productId);
+    if (!product && typeof janmashtamiProducts !== 'undefined') {
+        product = janmashtamiProducts.find(p => p.id === productId);
+    }
+    
+    if (!product) {
+        showNotification('Product not found!', 'error');
+        return;
+    }
+    
     const existingItem = cart.find(item => item.id === productId);
 
     if (existingItem) {
@@ -743,9 +753,19 @@ function updateWishlistCount() {
 
 // Enhanced quick view
 function quickView(productId) {
-    const product = products.find(p => p.id === productId);
+    // Look in both main products and janmashtami products (if available)
+    let product = products.find(p => p.id === productId);
+    if (!product && typeof janmashtamiProducts !== 'undefined') {
+        product = janmashtamiProducts.find(p => p.id === productId);
+    }
+    
+    if (!product) {
+        showNotification('Product not found!', 'error');
+        return;
+    }
+    
     const discount = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
-    const stars = generateStars(product.rating);
+    const stars = product.rating ? generateStars(product.rating) : generateStars(4.5);
 
     const modalBody = document.getElementById('productModalBody');
     modalBody.innerHTML = `
