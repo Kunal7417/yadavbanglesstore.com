@@ -2224,6 +2224,26 @@ body {
     }
 }
 
+/* ===== CALL LINK STYLES ===== */
+.call-link {
+    color: var(--primary-color) !important;
+    text-decoration: none !important;
+    font-weight: 600;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.call-link:hover {
+    color: var(--secondary-color) !important;
+    text-shadow: 0 0 5px rgba(255, 107, 157, 0.3);
+}
+
+.call-link i {
+    font-size: 0.9em;
+}
+
 /* Janmashtami Popup Styles */
 .janmashtami-popup-overlay {
     position: fixed;

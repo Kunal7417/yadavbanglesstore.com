@@ -651,11 +651,31 @@ function showProductTab(category, buttonElement) {
 function showCategory(category) {
     document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
     setTimeout(() => {
-        const tabButton = Array.from(document.querySelectorAll('.tab-btn')).find(btn => 
-            btn.textContent.toLowerCase().includes(category.substring(0, 6))
-        );
+        let tabButton;
+        
+        // Map categories to their tab button text
+        const categoryMap = {
+            'bangles': 'Bangles',
+            'poshaks': 'Poshaks', 
+            'cosmetics': 'Beauty',
+            'festival': 'Festival'
+        };
+        
+        const buttonText = categoryMap[category];
+        if (buttonText) {
+            tabButton = Array.from(document.querySelectorAll('.tab-btn')).find(btn => 
+                btn.textContent.toLowerCase().includes(buttonText.toLowerCase())
+            );
+        }
+        
         if (tabButton) {
             showProductTab(category, tabButton);
+        } else {
+            // Fallback: show all products if specific category not found
+            const allButton = document.querySelector('.tab-btn.active') || document.querySelector('.tab-btn');
+            if (allButton) {
+                showProductTab('all', allButton);
+            }
         }
     }, 500);
 }
@@ -1401,6 +1421,11 @@ document.addEventListener('keydown', function(e) {
         }
     }
 });
+
+// Call Store Function - Global access
+function callStore() {
+    window.location.href = 'tel:+917417163092';
+}
 
 // Final initialization
 console.log('Yadav Bangles Store website initialized successfully! 🎉');
