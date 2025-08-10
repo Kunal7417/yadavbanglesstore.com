@@ -13,10 +13,9 @@
             dots: true,
             smartSpeed: 1000,
             autoplay: true,
-            autoplayTimeout: 3000,
+            autoplayTimeout: 4000,
             autoplayHoverPause: true
         });
-
 
         // Slider Caption Animation JS
         var caption = $('.banner-caption *');
@@ -37,26 +36,23 @@
             items: 3,
             loop: true,
             dots: false,
-            nav: false,
+            nav: true,
             navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
             margin: 30,
             responsive: {
-                // breakpoint from 0 up
                 0: {
                     items: 1,
-                    autoplay: true
+                    autoplay: true,
+                    nav: false
                 },
-                // breakpoint from 576 up
                 576: {
                     items: 2,
                     autoplay: true
                 },
-                // breakpoint from 768 up
                 768: {
                     items: 2,
                     nav: true
                 },
-                // breakpoint from 992 up
                 992: {
                     items: 3,
                     nav: true
@@ -69,32 +65,28 @@
             items: 4,
             loop: true,
             dots: false,
-            nav: false,
+            nav: true,
             navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
             margin: 30,
             responsive: {
-                // breakpoint from 0 up
                 0: {
                     items: 1,
                     margin: 0,
-                    autoPlay: true
+                    autoPlay: true,
+                    nav: false
                 },
-                // breakpoint from 576 up
                 576: {
                     items: 2,
                     autoPlay: true
                 },
-                // breakpoint from 768 up
                 768: {
                     items: 2,
                     nav: true
                 },
-                // breakpoint from 992 up
                 992: {
                     items: 3,
                     nav: true
                 },
-                // breakpoint from 1200 up
                 1200: {
                     items: 4,
                     nav: true
@@ -347,3 +339,397 @@
 
     }); //window load End
 }(jQuery));
+
+// Yadav Bangles Store Custom Functions
+// Online Booking System - Simple & Professional
+function showBookingModal() {
+    var bookingModal = `
+        <div class="booking-modal-overlay" id="bookingModalOverlay">
+            <div class="booking-modal">
+                <div class="booking-modal-header">
+                    <h3><i class="fa fa-shopping-bag"></i> Quick Order</h3>
+                    <button onclick="closeBookingModal()" class="close-btn">&times;</button>
+                </div>
+                <div class="booking-modal-body">
+                    <div class="store-info">
+                        <p><i class="fa fa-map-marker"></i> <strong>Yadav Bangles Store</strong> - Jaiganj, Aligarh</p>
+                        <p><i class="fa fa-phone"></i> Call: <a href="tel:7417163092">7417163092</a></p>
+                    </div>
+                    
+                    <form id="bookingForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="text" id="customerName" required placeholder="Your Name *" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <input type="tel" id="customerPhone" required placeholder="Mobile Number *" class="form-input">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="text" id="productName" placeholder="Product you want to order" class="form-input">
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <select id="productCategory" class="form-input">
+                                    <option value="">Select Category</option>
+                                    <option value="bangles">Glass Bangles</option>
+                                    <option value="churis">Fancy Churis</option>
+                                    <option value="poshak">God Poshaks</option>
+                                    <option value="cosmetics">Cosmetics</option>
+                                    <option value="festival">Festival Items</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input type="number" id="quantity" min="1" value="1" placeholder="Qty" class="form-input">
+                            </div>
+                        </div>
+                        
+                        <div class="booking-actions">
+                            <button type="button" onclick="submitBookingWhatsApp()" class="btn-whatsapp">
+                                <i class="fa fa-whatsapp"></i> Order via WhatsApp
+                            </button>
+                            <button type="button" onclick="callStore()" class="btn-call">
+                                <i class="fa fa-phone"></i> Call Now
+                            </button>
+                        </div>
+                        
+                        <div class="booking-note">
+                            <small><i class="fa fa-info-circle"></i> We'll confirm your order and arrange home delivery within Aligarh</small>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    document.body.insertAdjacentHTML('beforeend', bookingModal);
+    var overlay = document.getElementById('bookingModalOverlay');
+    overlay.style.display = 'flex';
+    setTimeout(function() {
+        overlay.classList.add('show');
+    }, 10);
+}
+
+function closeBookingModal() {
+    var modal = document.getElementById('bookingModalOverlay');
+    if (modal) {
+        modal.classList.remove('show');
+        setTimeout(function() {
+            modal.remove();
+        }, 300);
+    }
+}
+
+function bookProduct(productName, price) {
+    showBookingModal();
+    setTimeout(function() {
+        document.getElementById('productName').value = productName;
+        if (price) {
+            document.getElementById('additionalInfo').value = 'Price: ₹' + price;
+        }
+    }, 100);
+}
+
+function submitBookingWhatsApp() {
+    var name = document.getElementById('customerName').value;
+    var phone = document.getElementById('customerPhone').value;
+    var product = document.getElementById('productName').value;
+    var category = document.getElementById('productCategory').value;
+    var quantity = document.getElementById('quantity').value;
+    
+    if (!name || !phone) {
+        alert('Please enter your name and mobile number');
+        return;
+    }
+    
+    var message = `🛍️ *Order from Yadav Bangles Store*\n\n`;
+    message += `👤 *Name:* ${name}\n`;
+    message += `📱 *Mobile:* ${phone}\n`;
+    if (product) message += `🛒 *Product:* ${product}\n`;
+    if (category) message += `📂 *Category:* ${getCategoryName(category)}\n`;
+    message += `🔢 *Quantity:* ${quantity}\n\n`;
+    message += `📍 *Store:* Jaiganj, Aligarh\n`;
+    message += `✅ Please confirm availability and price. Thank you!`;
+    
+    var whatsappUrl = `https://wa.me/917417163092?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+    closeBookingModal();
+}
+
+function getCategoryName(category) {
+    var categories = {
+        'bangles': 'Glass Bangles',
+        'churis': 'Fancy Churis', 
+        'poshak': 'God Poshaks',
+        'cosmetics': 'Cosmetics',
+        'festival': 'Festival Items'
+    };
+    return categories[category] || category;
+}
+
+function callStore() {
+    window.location.href = 'tel:+917417163092';
+}
+
+function quickView(productName) {
+    var message = `I need detailed information about ${productName}.`;
+    var whatsappUrl = `https://wa.me/917417163092?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+}
+
+function addToWishlist(productName) {
+    // Store in localStorage for now
+    var wishlist = JSON.parse(localStorage.getItem('ybsWishlist') || '[]');
+    if (!wishlist.includes(productName)) {
+        wishlist.push(productName);
+        localStorage.setItem('ybsWishlist', JSON.stringify(wishlist));
+        showNotification(productName + ' added to wishlist!');
+    } else {
+        showNotification(productName + ' is already in wishlist!');
+    }
+}
+
+function showNotification(message) {
+    var notification = document.createElement('div');
+    notification.className = 'ybs-notification';
+    notification.innerHTML = message;
+    document.body.appendChild(notification);
+    
+    setTimeout(function() {
+        notification.classList.add('show');
+    }, 100);
+    
+    setTimeout(function() {
+        notification.classList.remove('show');
+        setTimeout(function() {
+            notification.remove();
+        }, 300);
+    }, 3000);
+}
+
+function scrollToProducts() {
+    document.getElementById('new-collection-area').scrollIntoView({
+        behavior: 'smooth'
+    });
+}
+
+// Festival Offers Banner
+function showFestivalOffer() {
+    var currentDate = new Date();
+    var currentMonth = currentDate.getMonth() + 1;
+    var festivalMessage = '';
+    
+    // Festival-based offers
+    if (currentMonth === 10 || currentMonth === 11) { // Diwali season
+        festivalMessage = 'दिवाली स्पेशल ऑफर! सभी चूड़ियों पर 20% छूट!';
+    } else if (currentMonth === 3) { // Holi
+        festivalMessage = 'होली स्पेशल! रंगबिरंगी चूड़ियों पर विशेष छूट!';
+    } else if (currentMonth === 9) { // Navratri
+        festivalMessage = 'नवरात्रि स्पेशल! भगवान के पोशाक पर 15% छूट!';
+    }
+    
+    if (festivalMessage) {
+        var banner = document.createElement('div');
+        banner.className = 'festival-banner';
+        banner.innerHTML = `
+            <div class="festival-content">
+                <span>${festivalMessage}</span>
+                <button onclick="this.parentElement.parentElement.remove()">×</button>
+            </div>
+        `;
+        document.body.insertBefore(banner, document.body.firstChild);
+    }
+}
+
+// Initialize festival offers on page load
+document.addEventListener('DOMContentLoaded', function() {
+    showFestivalOffer();
+    
+    // Update cart count from localStorage
+    var cartItems = JSON.parse(localStorage.getItem('ybsCart') || '[]');
+    var cartCount = document.querySelector('.shop-cart .count');
+    if (cartCount) {
+        cartCount.textContent = cartItems.length;
+    }
+});
+
+// Search functionality
+function searchProducts() {
+    var searchTerm = document.querySelector('input[type="search"]').value.toLowerCase();
+    if (searchTerm) {
+        var message = `I need information about "${searchTerm}".`;
+        var whatsappUrl = `https://wa.me/917417163092?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, '_blank');
+    }
+}
+
+// Add search functionality to search form
+document.addEventListener('DOMContentLoaded', function() {
+    var searchForm = document.querySelector('.search-box-form form');
+    if (searchForm) {
+        searchForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            searchProducts();
+        });
+    }
+});
+
+// Close modal when clicking outside
+document.addEventListener('click', function(e) {
+    if (e.target && e.target.id === 'bookingModalOverlay') {
+        closeBookingModal();
+    }
+});
+
+// Enhanced dropdown functionality
+document.addEventListener('DOMContentLoaded', function() {
+    var dropdowns = document.querySelectorAll('.dropdown-show');
+    
+    dropdowns.forEach(function(dropdown) {
+        var menu = dropdown.querySelector('.mega-menu-wrap');
+        if (menu) {
+            var hideTimeout;
+            var isOpen = false;
+            
+            // Check if it's mobile/touch device
+            var isMobile = window.innerWidth <= 767;
+            
+            if (isMobile) {
+                // Mobile: Use click to toggle
+                var dropdownLink = dropdown.querySelector('a');
+                if (dropdownLink) {
+                    dropdownLink.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        isOpen = !isOpen;
+                        
+                        if (isOpen) {
+                            menu.style.opacity = '1';
+                            menu.style.visibility = 'visible';
+                            menu.style.transform = 'translateY(0)';
+                        } else {
+                            menu.style.opacity = '0';
+                            menu.style.visibility = 'hidden';
+                            menu.style.transform = 'translateY(-10px)';
+                        }
+                    });
+                }
+            } else {
+                // Desktop: Use hover
+                dropdown.addEventListener('mouseenter', function() {
+                    clearTimeout(hideTimeout);
+                    menu.style.opacity = '1';
+                    menu.style.visibility = 'visible';
+                    menu.style.transform = 'translateY(0)';
+                    isOpen = true;
+                });
+                
+                dropdown.addEventListener('mouseleave', function() {
+                    hideTimeout = setTimeout(function() {
+                        menu.style.opacity = '0';
+                        menu.style.visibility = 'hidden';
+                        menu.style.transform = 'translateY(-10px)';
+                        isOpen = false;
+                    }, 200);
+                });
+                
+                // Keep menu open when hovering over it
+                menu.addEventListener('mouseenter', function() {
+                    clearTimeout(hideTimeout);
+                });
+                
+                menu.addEventListener('mouseleave', function() {
+                    hideTimeout = setTimeout(function() {
+                        menu.style.opacity = '0';
+                        menu.style.visibility = 'hidden';
+                        menu.style.transform = 'translateY(-10px)';
+                        isOpen = false;
+                    }, 200);
+                });
+            }
+        }
+    });
+    
+    // Handle settings dropdown
+    var settingsDropdown = document.querySelector('.settings');
+    if (settingsDropdown) {
+        var settingsMenu = settingsDropdown.querySelector('.site-settings');
+        if (settingsMenu) {
+            var settingsHideTimeout;
+            
+            settingsDropdown.addEventListener('mouseenter', function() {
+                clearTimeout(settingsHideTimeout);
+                settingsMenu.style.opacity = '1';
+                settingsMenu.style.visibility = 'visible';
+                settingsMenu.style.transform = 'translateY(0)';
+            });
+            
+            settingsDropdown.addEventListener('mouseleave', function() {
+                settingsHideTimeout = setTimeout(function() {
+                    settingsMenu.style.opacity = '0';
+                    settingsMenu.style.visibility = 'hidden';
+                    settingsMenu.style.transform = 'translateY(-10px)';
+                }, 200);
+            });
+        }
+    }
+
+    // Handle cart dropdown
+    var cartDropdown = document.querySelector('.shop-cart');
+    if (cartDropdown) {
+        var cartMenu = cartDropdown.querySelector('.mini-cart');
+        if (cartMenu) {
+            var cartHideTimeout;
+            
+            cartDropdown.addEventListener('mouseenter', function() {
+                clearTimeout(cartHideTimeout);
+                cartMenu.style.opacity = '1';
+                cartMenu.style.visibility = 'visible';
+                cartMenu.style.transform = 'translateY(0)';
+            });
+            
+            cartDropdown.addEventListener('mouseleave', function() {
+                cartHideTimeout = setTimeout(function() {
+                    cartMenu.style.opacity = '0';
+                    cartMenu.style.visibility = 'hidden';
+                    cartMenu.style.transform = 'translateY(-10px)';
+                }, 200);
+            });
+        }
+    }
+
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.dropdown-show')) {
+            dropdowns.forEach(function(dropdown) {
+                var menu = dropdown.querySelector('.mega-menu-wrap');
+                if (menu) {
+                    menu.style.opacity = '0';
+                    menu.style.visibility = 'hidden';
+                    menu.style.transform = 'translateY(-10px)';
+                }
+            });
+        }
+        
+        // Close settings dropdown
+        if (!e.target.closest('.settings') && settingsDropdown) {
+            var settingsMenu = settingsDropdown.querySelector('.site-settings');
+            if (settingsMenu) {
+                settingsMenu.style.opacity = '0';
+                settingsMenu.style.visibility = 'hidden';
+                settingsMenu.style.transform = 'translateY(-10px)';
+            }
+        }
+        
+        // Close cart dropdown
+        if (!e.target.closest('.shop-cart') && cartDropdown) {
+            var cartMenu = cartDropdown.querySelector('.mini-cart');
+            if (cartMenu) {
+                cartMenu.style.opacity = '0';
+                cartMenu.style.visibility = 'hidden';
+                cartMenu.style.transform = 'translateY(-10px)';
+            }
+        }
+    });
+});

@@ -23,7 +23,8 @@ const products = [
         reviews: 23,
         badge: 'New',
         description: 'Beautiful golden glass bangles perfect for special occasions. Available in multiple sizes.',
-        keywords: ['golden', 'glass', 'bangles', 'traditional', 'wedding']
+        keywords: ['golden', 'glass', 'bangles', 'traditional', 'wedding'],
+        image: 'assets/img/bangle1.avif'
     },
     {
         id: 2,
@@ -35,7 +36,8 @@ const products = [
         reviews: 45,
         badge: 'Popular',
         description: 'Vibrant colorful glass bangles available in multiple colors and patterns.',
-        keywords: ['colorful', 'glass', 'bangles', 'vibrant', 'rainbow']
+        keywords: ['colorful', 'glass', 'bangles', 'vibrant', 'rainbow'],
+        image: 'assets/img/bangle2.png.webp'
     },
     {
         id: 3,
@@ -47,7 +49,9 @@ const products = [
         reviews: 32,
         badge: 'Sale',
         description: 'Classic red bangles perfect for married women and festive occasions.',
-        keywords: ['red', 'traditional', 'bangles', 'married', 'bridal']
+
+        keywords: ['red', 'traditional', 'bangles', 'married', 'bridal'],
+
     },
     {
         id: 4,
@@ -59,7 +63,8 @@ const products = [
         reviews: 18,
         badge: 'Premium',
         description: 'Elegant crystal clear bangles with sparkling finish and premium quality.',
-        keywords: ['crystal', 'clear', 'bangles', 'elegant', 'premium']
+        keywords: ['crystal', 'clear', 'bangles', 'elegant', 'premium'],
+        image: 'assets/img/bangle4.jpeg'
     },
     {
         id: 5,
@@ -71,7 +76,9 @@ const products = [
         reviews: 67,
         badge: 'Divine',
         description: 'Beautiful divine dress for Laddu Gopal with premium fabric and intricate embroidery.',
-        keywords: ['laddu', 'gopal', 'dress', 'divine', 'krishna', 'poshak']
+        keywords: ['laddu', 'gopal', 'dress', 'divine', 'krishna', 'poshak'],
+        image: 'assets/img/laddugopal1.jpg'
+
     },
     {
         id: 6,
@@ -143,7 +150,8 @@ const products = [
         reviews: 28,
         badge: 'Bridal',
         description: 'Exclusive bridal bangle collection with gold finish and intricate patterns.',
-        keywords: ['bridal', 'wedding', 'bangles', 'gold', 'exclusive']
+        keywords: ['bridal', 'wedding', 'bangles', 'gold', 'exclusive'],
+        image: 'assets/img/bangle5.jpg'
     },
     {
         id: 12,
@@ -156,6 +164,85 @@ const products = [
         badge: 'Divine',
         description: 'Beautiful poshak for Lakshmi Mata with rich fabric and golden embroidery.',
         keywords: ['lakshmi', 'mata', 'poshak', 'goddess', 'golden']
+    },
+    {
+        id: 13,
+        name: 'Laddu Gopal Royal Dress',
+        category: 'poshaks',
+        price: 280,
+        originalPrice: 320,
+        rating: 4.9,
+        reviews: 52,
+        badge: 'Royal',
+        description: 'Exquisite royal dress for Laddu Gopal with rich golden work and premium silk fabric.',
+        keywords: ['laddu', 'gopal', 'royal', 'dress', 'krishna', 'silk', 'poshak'],
+        image: 'assets/img/laddugopal2.jpg'
+    },
+    {
+        id: 14,
+        name: 'Laddu Gopal Traditional Outfit',
+        category: 'poshaks',
+        price: 220,
+        originalPrice: 270,
+        rating: 4.7,
+        reviews: 38,
+        badge: 'Traditional',
+        description: 'Traditional handcrafted outfit for Laddu Gopal with authentic designs and vibrant colors.',
+        keywords: ['laddu', 'gopal', 'traditional', 'handcrafted', 'krishna', 'poshak'],
+        image: 'assets/img/laddugopal3.jpg'
+    },
+    {
+        id: 15,
+        name: 'Laddu Gopal Festival Special',
+        category: 'poshaks',
+        price: 300,
+        originalPrice: 350,
+        rating: 5,
+        reviews: 29,
+        badge: 'Festival',
+        description: 'Special festival dress for Laddu Gopal perfect for Janmashtami and other celebrations.',
+        keywords: ['laddu', 'gopal', 'festival', 'janmashtami', 'celebration', 'krishna', 'poshak'],
+        image: 'assets/img/laddugopal4.jpeg'
+    },
+    {
+        id: 16,
+        name: 'Designer Glass Bangles Set',
+        category: 'bangles',
+        price: 160,
+        originalPrice: 200,
+        rating: 4.6,
+        reviews: 35,
+        badge: 'Designer',
+        description: 'Elegant designer glass bangles with unique patterns and premium finish.',
+        keywords: ['designer', 'glass', 'bangles', 'elegant', 'premium', 'unique'],
+        image: 'assets/img/bangle1.avif'
+    },
+    {
+        id: 17,
+        name: 'Festive Multicolor Bangles',
+        category: 'bangles',
+        price: 90,
+        originalPrice: 110,
+        rating: 4.7,
+        reviews: 42,
+        badge: 'Festive',
+        description: 'Beautiful multicolor bangles perfect for festivals and celebrations.',
+        keywords: ['festive', 'multicolor', 'bangles', 'celebration', 'colorful', 'festival'],
+        image: 'assets/img/bangle2.png.webp'
+    },
+    {
+        id: 18,
+        name: 'Premium Chunky Bangles',
+        category: 'bangles',
+        price: 140,
+        originalPrice: 170,
+        rating: 4.4,
+        reviews: 26,
+        badge: 'Premium',
+        description: 'Chunky premium bangles with rich colors and durable quality.',
+        keywords: ['premium', 'chunky', 'bangles', 'rich', 'durable', 'quality'],
+        image: 'assets/img/bangle3.jpg'
+
     }
 ];
 
@@ -327,6 +414,10 @@ function renderProducts(productsToRender) {
         const productCard = `
             <div class="product-card" data-category="${product.category}" style="animation-delay: ${index * 0.1}s">
                 <div class="product-image">
+                    ${product.image ? `<img src="${product.image}" alt="${product.name}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">` : ''}
+                    <div class="product-placeholder" style="display: ${product.image ? 'none' : 'flex'}; width: 100%; height: 200px; background: linear-gradient(135deg, var(--grey-100), var(--grey-200)); border-radius: 12px; align-items: center; justify-content: center; font-size: 48px;">
+                        ${getCategoryEmoji(product.category)}
+                    </div>
                     <span class="product-badge">${product.badge}</span>
                     <div class="product-actions">
                         <button class="action-btn" onclick="quickView(${product.id})" title="Quick View">
@@ -516,8 +607,11 @@ function quickView(productId) {
     modalBody.innerHTML = `
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: start;">
             <div style="text-align: center;">
-                <div style="width: 100%; height: 250px; background: linear-gradient(135deg, var(--grey-100), var(--grey-200)); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 64px; margin-bottom: 16px;">
-                    ${getCategoryEmoji(product.category)}
+                <div style="width: 100%; height: 250px; background: linear-gradient(135deg, var(--grey-100), var(--grey-200)); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 64px; margin-bottom: 16px; overflow: hidden;">
+                    ${product.image ? 
+                        `<img src="${product.image}" alt="${product.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 16px;" onerror="this.style.display='none'; this.parentElement.innerHTML='${getCategoryEmoji(product.category)}';this.parentElement.style.fontSize='64px';">` : 
+                        getCategoryEmoji(product.category)
+                    }
                 </div>
                 <div style="display: flex; gap: 8px; justify-content: center;">
                     <button onclick="addToCart(${product.id}); closeModal('productModal');" class="btn btn-primary" style="flex: 1;">
