@@ -248,6 +248,7 @@ const products = [
 
 // Search suggestions data
 const searchSuggestions = [
+    'janmashtami', 'laddu gopal', 'krishna dress', 'janmashtami special',
     'bangles', 'golden bangles', 'colorful bangles', 'red bangles', 'bridal bangles',
     'poshak', 'laddu gopal dress', 'durga mata dress', 'lakshmi poshak',
     'cosmetics', 'makeup kit', 'skincare', 'beauty products',
@@ -262,10 +263,10 @@ document.addEventListener('DOMContentLoaded', function() {
     updateWishlistCount();
     initializeEventListeners();
     
-    // Show welcome message
+    // Show Janmashtami popup after page loads
     setTimeout(() => {
-        showNotification('Welcome to Yadav Bangles Store! ✨', 'success');
-    }, 1000);
+        showJanmashtamiPopup();
+    }, 150);
 });
 
 // Initialize event listeners
@@ -949,10 +950,7 @@ window.addEventListener('load', function() {
         loader.style.display = 'none';
     });
     
-    // Show success message
-    setTimeout(() => {
-        showNotification('Website loaded successfully! Ready to shop! 🎉', 'success');
-    }, 500);
+    // Website loaded - no notification needed for production
 });
 
 // Error handling for images
@@ -1113,7 +1111,105 @@ window.addEventListener('resize', function() {
     }
 });
 
+// Janmashtami Popup Functions
+function showJanmashtamiPopup() {
+    // Option 1: Show every time (good for testing/demos)
+    const popup = document.getElementById('janmashtamiPopup');
+    
+    // Preserve scrollbar width to prevent layout shift
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    document.body.style.overflow = 'hidden';
+    document.body.style.paddingRight = scrollbarWidth + 'px';
+    
+    popup.classList.add('show');
+    
+    // Option 2: Show only once per day (uncomment below and comment above)
+    // const today = new Date().toDateString();
+    // const popupShown = localStorage.getItem('janmashtamiPopupShown');
+    // if (popupShown !== today) {
+    //     const popup = document.getElementById('janmashtamiPopup');
+    //     const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    //     document.body.style.overflow = 'hidden';
+    //     document.body.style.paddingRight = scrollbarWidth + 'px';
+    //     popup.classList.add('show');
+    //     localStorage.setItem('janmashtamiPopupShown', today);
+    // }
+}
+
+function closeJanmashtamiPopup() {
+    const popup = document.getElementById('janmashtamiPopup');
+    popup.classList.remove('show');
+    
+    // Restore scrollbar and remove padding
+    document.body.style.overflow = 'auto';
+    document.body.style.paddingRight = '';
+    
+    // Show welcome notification after closing popup
+    setTimeout(() => {
+        showNotification('Welcome to Yadav Bangles Store! Explore our Janmashtami collection! 🕉️', 'success');
+    }, 500);
+}
+
+function scrollToJanmashtami() {
+    closeJanmashtamiPopup();
+    setTimeout(() => {
+        document.getElementById('janmashtami-products').scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start'
+        });
+    }, 300);
+}
+
+function openJanmashtamiWhatsApp() {
+    const message = `🕉️ *Janmashtami Special Inquiry - Yadav Bangles Store*
+
+Namaste! I'm interested in your Janmashtami Special Collection:
+
+🎊 *Special Offer: 15% OFF on Laddu Gopal Poshaks*
+
+Products I'm interested in:
+• Laddu Gopal Divine Dress - ₹212 (was ₹250)
+• Laddu Gopal Royal Dress - ₹238 (was ₹280)
+• Laddu Gopal Traditional Outfit - ₹187 (was ₹220)
+• Laddu Gopal Festival Special - ₹255 (was ₹300)
+
+Please share more details about:
+- Available sizes
+- Fabric quality
+- Delivery options in Aligarh
+
+Thank you! 🙏
+
+*Jai Shri Krishna!* 💙`;
+
+    const whatsappURL = `https://wa.me/917417163092?text=${encodeURIComponent(message)}`;
+    window.open(whatsappURL, '_blank');
+    closeJanmashtamiPopup();
+}
+
+// Close popup when clicking outside
+document.addEventListener('click', function(e) {
+    const popup = document.getElementById('janmashtamiPopup');
+    const popupContent = document.querySelector('.janmashtami-popup-content');
+    
+    if (popup && popup.classList.contains('show')) {
+        if (e.target === popup) {
+            closeJanmashtamiPopup();
+        }
+    }
+});
+
+// Close popup with Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        const popup = document.getElementById('janmashtamiPopup');
+        if (popup && popup.classList.contains('show')) {
+            closeJanmashtamiPopup();
+        }
+    }
+});
+
 // Final initialization
 console.log('Yadav Bangles Store website initialized successfully! 🎉');
-console.log('Features loaded: Search, Cart, Wishlist, Modals, Responsive Design, Mobile Navigation');
+console.log('Features loaded: Search, Cart, Wishlist, Modals, Responsive Design, Mobile Navigation, Janmashtami Popup');
 console.log('Contact: +91 7417163092 | Location: Jaiganj, Aligarh'); 
