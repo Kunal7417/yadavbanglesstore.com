@@ -1476,11 +1476,9 @@ body {
 
     .mobile-nav-toggle {
         display: block;
-        position: absolute;
-        top: 50%;
-        right: 20px;
-        transform: translateY(-50%);
+        position: static;
         z-index: 1001;
+        margin-left: 8px;
     }
 
     .nav-content {
@@ -1674,7 +1672,6 @@ body {
     }
 
     .mobile-nav-toggle {
-        right: 16px;
         font-size: 20px;
     }
 
