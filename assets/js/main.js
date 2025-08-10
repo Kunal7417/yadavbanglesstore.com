@@ -70,13 +70,13 @@ const products = [
         id: 5,
         name: 'Laddu Gopal Divine Dress',
         category: 'poshaks',
-        price: 250,
+        price: 255,
         originalPrice: 300,
         rating: 5,
         reviews: 67,
-        badge: 'Divine',
-        description: 'Beautiful divine dress for Laddu Gopal with premium fabric and intricate embroidery.',
-        keywords: ['laddu', 'gopal', 'dress', 'divine', 'krishna', 'poshak'],
+        badge: 'Janmashtami Special',
+        description: 'Beautiful divine dress for Laddu Gopal with premium fabric and intricate embroidery. Special 15% off for Janmashtami!',
+        keywords: ['laddu', 'gopal', 'dress', 'divine', 'krishna', 'poshak', 'janmashtami'],
         image: 'assets/img/laddugopal1.jpg'
 
     },
@@ -169,38 +169,38 @@ const products = [
         id: 13,
         name: 'Laddu Gopal Royal Dress',
         category: 'poshaks',
-        price: 280,
+        price: 272,
         originalPrice: 320,
         rating: 4.9,
         reviews: 52,
-        badge: 'Royal',
-        description: 'Exquisite royal dress for Laddu Gopal with rich golden work and premium silk fabric.',
-        keywords: ['laddu', 'gopal', 'royal', 'dress', 'krishna', 'silk', 'poshak'],
+        badge: 'Janmashtami Special',
+        description: 'Exquisite royal dress for Laddu Gopal with rich golden work and premium silk fabric. Special 15% off for Janmashtami!',
+        keywords: ['laddu', 'gopal', 'royal', 'dress', 'krishna', 'silk', 'poshak', 'janmashtami'],
         image: 'assets/img/laddugopal2.jpg'
     },
     {
         id: 14,
         name: 'Laddu Gopal Traditional Outfit',
         category: 'poshaks',
-        price: 220,
+        price: 230,
         originalPrice: 270,
         rating: 4.7,
         reviews: 38,
-        badge: 'Traditional',
-        description: 'Traditional handcrafted outfit for Laddu Gopal with authentic designs and vibrant colors.',
-        keywords: ['laddu', 'gopal', 'traditional', 'handcrafted', 'krishna', 'poshak'],
+        badge: 'Janmashtami Special',
+        description: 'Traditional handcrafted outfit for Laddu Gopal with authentic designs and vibrant colors. Special 15% off for Janmashtami!',
+        keywords: ['laddu', 'gopal', 'traditional', 'handcrafted', 'krishna', 'poshak', 'janmashtami'],
         image: 'assets/img/laddugopal3.jpg'
     },
     {
         id: 15,
         name: 'Laddu Gopal Festival Special',
         category: 'poshaks',
-        price: 300,
+        price: 298,
         originalPrice: 350,
         rating: 5,
         reviews: 29,
-        badge: 'Festival',
-        description: 'Special festival dress for Laddu Gopal perfect for Janmashtami and other celebrations.',
+        badge: 'Janmashtami Special',
+        description: 'Special festival dress for Laddu Gopal perfect for Janmashtami and other celebrations. Special 15% off for Janmashtami!',
         keywords: ['laddu', 'gopal', 'festival', 'janmashtami', 'celebration', 'krishna', 'poshak'],
         image: 'assets/img/laddugopal4.jpeg'
     },
@@ -1198,10 +1198,10 @@ Namaste! I'm interested in your Janmashtami Special Collection:
 🎊 *Special Offer: 15% OFF on Laddu Gopal Poshaks*
 
 Products I'm interested in:
-• Laddu Gopal Divine Dress - ₹212 (was ₹250)
-• Laddu Gopal Royal Dress - ₹238 (was ₹280)
-• Laddu Gopal Traditional Outfit - ₹187 (was ₹220)
-• Laddu Gopal Festival Special - ₹255 (was ₹300)
+• Laddu Gopal Divine Dress - ₹255 (was ₹300)
+• Laddu Gopal Royal Dress - ₹272 (was ₹320)
+• Laddu Gopal Traditional Outfit - ₹230 (was ₹270)
+• Laddu Gopal Festival Special - ₹298 (was ₹350)
 
 Please share more details about:
 - Available sizes
