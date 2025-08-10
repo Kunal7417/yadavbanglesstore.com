@@ -836,18 +836,48 @@ function setActiveNav(element) {
     }
 }
 
-// Scroll handling
+// Enhanced scroll handling with smart top-bar behavior
+let lastScrollY = 0;
+let ticking = false;
+
 function handleScroll() {
     const header = document.getElementById('header');
+    const topBar = document.querySelector('.top-bar');
     const scrollTop = document.getElementById('scrollTop');
+    const currentScrollY = window.scrollY;
     
-    if (window.scrollY > 100) {
+    // Standard scroll effects
+    if (currentScrollY > 100) {
         header.classList.add('scrolled');
         scrollTop.classList.add('show');
     } else {
         header.classList.remove('scrolled');
         scrollTop.classList.remove('show');
     }
+    
+    // Smart top-bar behavior for all screens (hide/show only the top bar)
+    if (topBar) {
+        if (currentScrollY > 80) { // Start hiding after 80px scroll
+            if (currentScrollY > lastScrollY && currentScrollY > 120) {
+                // Scrolling down - hide top bar and move header to top
+                topBar.classList.add('hidden');
+                topBar.classList.remove('visible');
+                header.classList.add('top-bar-hidden');
+            } else if (currentScrollY < lastScrollY) {
+                // Scrolling up - show top bar and restore header position
+                topBar.classList.remove('hidden');
+                topBar.classList.add('visible');
+                header.classList.remove('top-bar-hidden');
+            }
+        } else {
+            // Near top - always show top bar and normal header position
+            topBar.classList.remove('hidden');
+            topBar.classList.add('visible');
+            header.classList.remove('top-bar-hidden');
+        }
+    }
+    
+    lastScrollY = currentScrollY;
 }
 
 function scrollToTop() {
