@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Payment Flow - Yadav Bangles Store</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .test-button {
+            background: #FF6B35;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        .test-button:hover {
+            background: #e55a2b;
+        }
+        .status {
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        .info { background: #d1ecf1; color: #0c5460; }
+        .debug-log {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🧪 Payment Flow Test</h1>
+        <p>This page will test if your payment integration is working correctly.</p>
+        
+        <div class="status info">
+            <strong>Test Status:</strong> <span id="testStatus">Ready to test...</span>
+        </div>
+        
+        <h3>Quick Tests:</h3>
+        <button class="test-button" onclick="testSubmitOrderFunction()">
+            🔍 Test submitOrder Function
+        </button>
+        
+        <button class="test-button" onclick="testPaymentOptionsModal()">
+            💳 Test Payment Options Modal
+        </button>
+        
+        <button class="test-button" onclick="testUPIPayment()">
+            📱 Test UPI Payment Flow
+        </button>
+        
+        <button class="test-button" onclick="simulateFullOrder()">
+            🛍️ Simulate Full Order Flow
+        </button>
+        
+        <button class="test-button" onclick="clearLogs()">
+            🧹 Clear Logs
+        </button>
+        
+        <h3>Debug Console:</h3>
+        <div class="debug-log" id="debugLog">Console logs will appear here...</div>
+        
+        <h3>Instructions:</h3>
+        <ol>
+            <li><strong>Test submitOrder Function:</strong> Checks if the new payment function is loaded</li>
+            <li><strong>Test Payment Options Modal:</strong> Shows the payment selection screen</li>
+            <li><strong>Test UPI Payment:</strong> Tests UPI payment flow with your UPI ID</li>
+            <li><strong>Simulate Full Order:</strong> Complete end-to-end test</li>
+        </ol>
+        
+        <div class="status info">
+            <strong>Expected Result:</strong> You should see payment options (Paytm, UPI, etc.) instead of direct WhatsApp redirect.
+        </div>
+    </div>
+    
+    <!-- Include your payment configuration and main scripts -->
+    <script src="payment-config.js"></script>
+    <script src="assets/js/main.js"></script>
+    
+    <script>
+        // Override console.log to capture logs
+        const originalConsoleLog = console.log;
+        const debugLog = document.getElementById('debugLog');
+        const testStatus = document.getElementById('testStatus');
+        
+        console.log = function(...args) {
+            originalConsoleLog.apply(console, args);
+            const logMessage = args.map(arg => 
+                typeof arg === 'object' ? JSON.stringify(arg, null, 2) : arg
+            ).join(' ');
+            debugLog.textContent += new Date().toLocaleTimeString() + ': ' + logMessage + '\n';
+            debugLog.scrollTop = debugLog.scrollHeight;
+        };
+        
+        function updateStatus(message, type = 'info') {
+            testStatus.textContent = message;
+            testStatus.parentElement.className = `status ${type}`;
+        }
+        
+        function testSubmitOrderFunction() {
+            console.log('🔍 Testing submitOrder function...');
+            updateStatus('Testing submitOrder function...', 'info');
+            
+            try {
+                if (typeof submitOrder === 'function') {
+                    console.log('✅ submitOrder function exists');
+                    
+                    // Check if it's the new version by looking for payment options
+                    const functionString = submitOrder.toString();
+                    if (functionString.includes('showPaymentOptions')) {
+                        console.log('✅ NEW submitOrder function detected (with payment options)');
+                        updateStatus('✅ NEW submitOrder function is loaded correctly!', 'success');
+                    } else {
+                        console.log('❌ OLD submitOrder function detected (WhatsApp only)');
+                        updateStatus('❌ OLD submitOrder function detected - check for conflicts', 'error');
+                    }
+                } else {
+                    console.log('❌ submitOrder function not found');
+                    updateStatus('❌ submitOrder function not found', 'error');
+                }
+            } catch (error) {
+                console.log('❌ Error testing submitOrder:', error);
+                updateStatus('❌ Error testing submitOrder function', 'error');
+            }
+        }
+        
+        function testPaymentOptionsModal() {
+            console.log('💳 Testing payment options modal...');
+            updateStatus('Testing payment options modal...', 'info');
+            
+            try {
+                if (typeof showPaymentOptions === 'function') {
+                    console.log('✅ showPaymentOptions function exists');
+                    
+                    // Create test order data
+                    const testOrderData = {
+                        customerName: 'Test Customer',
+                        customerPhone: '9999999999',
+                        customerAddress: 'Test Address, Aligarh',
+                        productName: 'Test Golden Bangles',
+                        quantity: '2',
+                        specialRequests: 'Test order'
+                    };
+                    
+                    // Test the function
+                    showPaymentOptions(testOrderData, 500);
+                    updateStatus('✅ Payment options modal should be visible now!', 'success');
+                } else {
+                    console.log('❌ showPaymentOptions function not found');
+                    updateStatus('❌ showPaymentOptions function not found', 'error');
+                }
+            } catch (error) {
+                console.log('❌ Error testing payment options:', error);
+                updateStatus('❌ Error testing payment options modal', 'error');
+            }
+        }
+        
+        function testUPIPayment() {
+            console.log('📱 Testing UPI payment flow...');
+            updateStatus('Testing UPI payment flow...', 'info');
+            
+            try {
+                // Create test order and store in session
+                const testOrderData = {
+                    customerName: 'Test Customer',
+                    customerPhone: '9999999999',
+                    customerAddress: 'Test Address, Aligarh',
+                    productName: 'Test Golden Bangles',
+                    quantity: '2',
+                    total: 500,
+                    orderId: 'TEST' + Date.now()
+                };
+                
+                sessionStorage.setItem('pendingOrder', JSON.stringify(testOrderData));
+                
+                if (typeof initiateUPIPayment === 'function') {
+                    console.log('✅ initiateUPIPayment function exists');
+                    initiateUPIPayment();
+                    updateStatus('✅ UPI payment screen should be visible now!', 'success');
+                } else {
+                    console.log('❌ initiateUPIPayment function not found');
+                    updateStatus('❌ initiateUPIPayment function not found', 'error');
+                }
+            } catch (error) {
+                console.log('❌ Error testing UPI payment:', error);
+                updateStatus('❌ Error testing UPI payment flow', 'error');
+            }
+        }
+        
+        function simulateFullOrder() {
+            console.log('🛍️ Simulating full order flow...');
+            updateStatus('Simulating full order flow...', 'info');
+            
+            try {
+                // Create a mock form event
+                const mockForm = document.createElement('form');
+                mockForm.innerHTML = `
+                    <input name="customerName" value="Test Customer">
+                    <input name="customerPhone" value="9999999999">
+                    <input name="customerAddress" value="Test Address, Aligarh">
+                    <input name="productName" value="Test Golden Bangles">
+                    <input name="quantity" value="2">
+                    <input name="specialRequests" value="Test order">
+                    <button type="submit">Submit</button>
+                `;
+                
+                const mockEvent = {
+                    preventDefault: () => {},
+                    target: mockForm
+                };
+                
+                // Test the full flow
+                console.log('🚀 Calling submitOrder with mock data...');
+                submitOrder(mockEvent);
+                
+                setTimeout(() => {
+                    updateStatus('✅ Full order simulation completed! Check for payment options.', 'success');
+                }, 1500);
+                
+            } catch (error) {
+                console.log('❌ Error simulating full order:', error);
+                updateStatus('❌ Error simulating full order flow', 'error');
+            }
+        }
+        
+        function clearLogs() {
+            debugLog.textContent = 'Console cleared...\n';
+            updateStatus('Logs cleared. Ready for new tests.', 'info');
+        }
+        
+        // Initialize
+        console.log('🧪 Payment Flow Test Page Loaded');
+        console.log('📊 Checking configuration...');
+        
+        if (window.PAYMENT_GATEWAYS) {
+            console.log('✅ External payment configuration loaded');
+        } else {
+            console.log('⚠️ External payment configuration not found, using defaults');
+        }
+        
+        // Auto-run basic test
+        setTimeout(() => {
+            testSubmitOrderFunction();
+        }, 1000);
+    </script>
+</body>
+</html> 

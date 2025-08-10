@@ -422,14 +422,39 @@ function closeBookingModal() {
     }
 }
 
+// Updated bookProduct function to use new payment integration
 function bookProduct(productName, price) {
-    showBookingModal();
-    setTimeout(function() {
-        document.getElementById('productName').value = productName;
-        if (price) {
-            document.getElementById('additionalInfo').value = 'Price: ₹' + price;
-        }
-    }, 100);
+    console.log('📝 bookProduct called from active.js with:', productName, price);
+    
+    // Use the new modal system from main.js
+    if (typeof openModal === 'function') {
+        console.log('✅ Using NEW payment system modal');
+        // Set product name in the new form
+        setTimeout(() => {
+            const productField = document.querySelector('[name="productName"]');
+            if (productField) {
+                productField.value = productName;
+            }
+        }, 100);
+        
+        // Open the new booking modal
+        openModal('bookingModal');
+    } else {
+        // Fallback to old system if new system not loaded
+        showBookingModal();
+        setTimeout(function() {
+            const productField = document.getElementById('productName');
+            if (productField) {
+                productField.value = productName;
+            }
+            if (price) {
+                const infoField = document.getElementById('additionalInfo');
+                if (infoField) {
+                    infoField.value = 'Price: ₹' + price;
+                }
+            }
+        }, 100);
+    }
 }
 
 function submitBookingWhatsApp() {

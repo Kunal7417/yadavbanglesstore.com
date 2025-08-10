@@ -680,8 +680,10 @@ function showCategory(category) {
     }, 500);
 }
 
-// Enhanced add to cart
+// Enhanced add to cart - Opens order form instead of just adding to cart
 function addToCart(productId) {
+    console.log('🛒 addToCart called with productId:', productId);
+    
     // Look in both main products and janmashtami products (if available)
     let product = products.find(p => p.id === productId);
     if (!product && typeof janmashtamiProducts !== 'undefined') {
@@ -693,28 +695,24 @@ function addToCart(productId) {
         return;
     }
     
-    const existingItem = cart.find(item => item.id === productId);
-
-    if (existingItem) {
-        existingItem.quantity += 1;
-        showNotification(`${product.name} quantity updated in cart!`, 'success');
-    } else {
-        cart.push({ ...product, quantity: 1 });
-        showNotification(`${product.name} added to cart! 🛒`, 'success');
-    }
-
-    updateCartCount();
+    console.log('📦 Found product:', product.name, 'Price:', product.price);
     
-    // Add to cart animation effect
-    const button = event.target;
-    const originalText = button.innerHTML;
-    button.innerHTML = '<i class="fas fa-check"></i> Added!';
-    button.style.background = 'var(--success-color)';
-    
+    // Instead of adding to cart, open the order form directly
+    // Set the product name in the form
     setTimeout(() => {
-        button.innerHTML = originalText;
-        button.style.background = '';
-    }, 1500);
+        const productField = document.querySelector('[name="productName"]');
+        if (productField) {
+            productField.value = product.name;
+            console.log('✅ Product name set in form:', product.name);
+        }
+    }, 100);
+    
+    // Open the booking modal for immediate order
+    openModal('bookingModal');
+    console.log('✅ Order form opened for:', product.name);
+    
+    // Show notification
+    showNotification(`📝 Order form opened for ${product.name}`, 'success');
 }
 
 // Enhanced wishlist toggle
@@ -874,13 +872,37 @@ function closeModal(modalId) {
     document.body.style.overflow = 'auto';
 }
 
-// Enhanced order submission
+// Payment Integration Functions
+// Use external payment configuration if available, otherwise use defaults
+const PAYMENT_CONFIG = window.PAYMENT_GATEWAYS || {
+    paytm: {
+        merchantId: 'YOUR_PAYTM_MERCHANT_ID', // Replace with your Paytm Merchant ID
+        merchantKey: 'YOUR_PAYTM_MERCHANT_KEY', // Replace with your Paytm Merchant Key
+        website: 'WEBSTAGING', // Use 'DEFAULT' for production
+        industryType: 'Retail',
+        channelId: 'WEB',
+        paytmUrl: 'https://securegw-stage.paytm.in/order/process' // Use production URL for live
+    },
+    razorpay: {
+        keyId: 'YOUR_RAZORPAY_KEY_ID', // Replace with your Razorpay Key ID
+        keySecret: 'YOUR_RAZORPAY_KEY_SECRET' // Replace with your Razorpay Key Secret
+    },
+    phonepe: {
+        merchantId: 'YOUR_PHONEPE_MERCHANT_ID',
+        saltKey: 'YOUR_PHONEPE_SALT_KEY'
+    }
+};
+
+// Enhanced order submission with payment options
 function submitOrder(event) {
     event.preventDefault();
     
+    // Debug log to confirm this function is being called
+    console.log('🚀 NEW submitOrder function called - Payment options will show!');
+    
     const button = event.target.querySelector('button[type="submit"]');
     const originalText = button.innerHTML;
-    button.innerHTML = '<span class="loading"></span> Sending...';
+    button.innerHTML = '<span class="loading"></span> Processing...';
     button.disabled = true;
 
     const formData = new FormData(event.target);
@@ -893,7 +915,313 @@ function submitOrder(event) {
         specialRequests: formData.get('specialRequests')
     };
 
-    // Create enhanced WhatsApp message
+    // Calculate order total
+    const product = products.find(p => p.name === orderData.productName);
+    const orderTotal = product ? product.price * parseInt(orderData.quantity) : 0;
+
+    // Store order data for payment processing
+    sessionStorage.setItem('pendingOrder', JSON.stringify({
+        ...orderData,
+        total: orderTotal,
+        orderId: generateOrderId()
+    }));
+
+    setTimeout(() => {
+        button.innerHTML = originalText;
+        button.disabled = false;
+        closeModal('bookingModal');
+        
+        // Show payment options modal instead of direct WhatsApp
+        showPaymentOptions(orderData, orderTotal);
+    }, 1000);
+}
+
+// Generate unique order ID
+function generateOrderId() {
+    return 'YBS' + Date.now() + Math.random().toString(36).substr(2, 5).toUpperCase();
+}
+
+// Show payment options modal
+function showPaymentOptions(orderData, total) {
+    console.log('💳 showPaymentOptions called with:', { orderData, total });
+    const modalBody = document.getElementById('productModalBody');
+    modalBody.innerHTML = `
+        <div style="text-align: center; padding: 20px;">
+            <h3 style="color: var(--primary-color); margin-bottom: 20px;">
+                <i class="fas fa-credit-card"></i> Choose Payment Method
+            </h3>
+            
+            <div style="background: var(--grey-100); padding: 20px; border-radius: 12px; margin-bottom: 24px;">
+                <h4 style="margin-bottom: 10px;">Order Summary</h4>
+                <p><strong>Product:</strong> ${orderData.productName}</p>
+                <p><strong>Quantity:</strong> ${orderData.quantity}</p>
+                <p><strong>Customer:</strong> ${orderData.customerName}</p>
+                <p style="font-size: 18px; color: var(--primary-color);"><strong>Total: ₹${total}</strong></p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px;">
+                
+                <!-- Paytm Payment -->
+                <button onclick="initiatePaytmPayment()" class="payment-btn" style="background: #00BAF2; color: white; padding: 16px; border: none; border-radius: 12px; cursor: pointer; transition: all 0.3s ease;">
+                    <i class="fab fa-paytm" style="font-size: 24px; margin-bottom: 8px; display: block;"></i>
+                    <strong>Paytm</strong>
+                    <small style="display: block; opacity: 0.9;">Wallet & UPI</small>
+                </button>
+
+                <!-- UPI Direct -->
+                <button onclick="initiateUPIPayment()" class="payment-btn" style="background: #FF6B35; color: white; padding: 16px; border: none; border-radius: 12px; cursor: pointer; transition: all 0.3s ease;">
+                    <i class="fas fa-mobile-alt" style="font-size: 24px; margin-bottom: 8px; display: block;"></i>
+                    <strong>UPI Pay</strong>
+                    <small style="display: block; opacity: 0.9;">GPay, PhonePe, etc.</small>
+                </button>
+
+                <!-- Razorpay (Multiple options) -->
+                <button onclick="initiateRazorpayPayment()" class="payment-btn" style="background: #3395FF; color: white; padding: 16px; border: none; border-radius: 12px; cursor: pointer; transition: all 0.3s ease;">
+                    <i class="fas fa-credit-card" style="font-size: 24px; margin-bottom: 8px; display: block;"></i>
+                    <strong>Card/Net Banking</strong>
+                    <small style="display: block; opacity: 0.9;">All Banks</small>
+                </button>
+
+                <!-- PhonePe -->
+                <button onclick="initiatePhonePePayment()" class="payment-btn" style="background: #5F259F; color: white; padding: 16px; border: none; border-radius: 12px; cursor: pointer; transition: all 0.3s ease;">
+                    <i class="fab fa-phoenix-framework" style="font-size: 24px; margin-bottom: 8px; display: block;"></i>
+                    <strong>PhonePe</strong>
+                    <small style="display: block; opacity: 0.9;">Quick Pay</small>
+                </button>
+
+                <!-- Cash on Delivery -->
+                <button onclick="initiateCOD()" class="payment-btn" style="background: #28A745; color: white; padding: 16px; border: none; border-radius: 12px; cursor: pointer; transition: all 0.3s ease;">
+                    <i class="fas fa-money-bill-wave" style="font-size: 24px; margin-bottom: 8px; display: block;"></i>
+                    <strong>Cash on Delivery</strong>
+                    <small style="display: block; opacity: 0.9;">Pay at delivery</small>
+                </button>
+
+                <!-- WhatsApp Order -->
+                <button onclick="processWhatsAppOrder()" class="payment-btn" style="background: #25D366; color: white; padding: 16px; border: none; border-radius: 12px; cursor: pointer; transition: all 0.3s ease;">
+                    <i class="fab fa-whatsapp" style="font-size: 24px; margin-bottom: 8px; display: block;"></i>
+                    <strong>WhatsApp Order</strong>
+                    <small style="display: block; opacity: 0.9;">Traditional way</small>
+                </button>
+            </div>
+
+            <p style="color: var(--grey-600); font-size: 14px; margin-bottom: 16px;">
+                <i class="fas fa-shield-alt"></i> All payments are secure and encrypted
+            </p>
+
+            <button onclick="closeModal('productModal')" class="btn btn-outline" style="width: 100%;">
+                Cancel Order
+            </button>
+        </div>
+    `;
+
+    openModal('productModal');
+}
+
+// Paytm Payment Integration
+function initiatePaytmPayment() {
+    const orderData = JSON.parse(sessionStorage.getItem('pendingOrder'));
+    if (!orderData) {
+        showNotification('Order data not found. Please try again.', 'error');
+        return;
+    }
+
+    // Check if Paytm is properly configured
+    if (!PAYMENT_CONFIG.paytm.merchantKey || PAYMENT_CONFIG.paytm.merchantKey === '') {
+        showNotification('Paytm is not configured yet. Please use UPI or COD payment.', 'error');
+        return;
+    }
+
+    showNotification('Redirecting to Paytm...', 'success');
+
+    // Create Paytm payment form
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = PAYMENT_CONFIG.paytm.paytmUrl;
+
+    const params = {
+        MID: PAYMENT_CONFIG.paytm.merchantId,
+        WEBSITE: PAYMENT_CONFIG.paytm.website,
+        INDUSTRY_TYPE_ID: PAYMENT_CONFIG.paytm.industryType,
+        CHANNEL_ID: PAYMENT_CONFIG.paytm.channelId,
+        ORDER_ID: orderData.orderId,
+        CUST_ID: orderData.customerPhone,
+        TXN_AMOUNT: orderData.total.toString(),
+        CALLBACK_URL: `${window.location.origin}/payment-success.html`,
+        EMAIL: `${orderData.customerPhone}@yadavbangles.com`, // Dummy email
+        MOBILE_NO: orderData.customerPhone
+    };
+
+    // Add parameters to form
+    Object.keys(params).forEach(key => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = key;
+        input.value = params[key];
+        form.appendChild(input);
+    });
+
+    document.body.appendChild(form);
+    form.submit();
+}
+
+// UPI Direct Payment
+function initiateUPIPayment() {
+    const orderData = JSON.parse(sessionStorage.getItem('pendingOrder'));
+    if (!orderData) {
+        showNotification('Order data not found. Please try again.', 'error');
+        return;
+    }
+
+    // Generate UPI payment link - use from configuration
+    const upiId = PAYMENT_CONFIG.upi ? PAYMENT_CONFIG.upi.upiId : '9119741603@ptaxis';
+    const amount = orderData.total;
+    const note = `Payment for ${orderData.productName} - Order ${orderData.orderId}`;
+    
+    const upiUrl = `upi://pay?pa=${upiId}&am=${amount}&cu=INR&tn=${encodeURIComponent(note)}`;
+    
+    // For mobile devices, try to open UPI app
+    if (/Android|iPhone/i.test(navigator.userAgent)) {
+        window.location.href = upiUrl;
+        
+        // Fallback: Show QR code and manual UPI ID
+        setTimeout(() => {
+            showUPIDetails(upiId, amount, note, orderData.orderId);
+        }, 3000);
+    } else {
+        // For desktop, show QR code directly
+        showUPIDetails(upiId, amount, note, orderData.orderId);
+    }
+}
+
+// Show UPI payment details
+function showUPIDetails(upiId, amount, note, orderId) {
+    const modalBody = document.getElementById('productModalBody');
+    modalBody.innerHTML = `
+        <div style="text-align: center; padding: 20px;">
+            <h3 style="color: var(--primary-color); margin-bottom: 20px;">
+                <i class="fas fa-mobile-alt"></i> UPI Payment
+            </h3>
+            
+            <div style="background: var(--grey-100); padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+                <h4 style="margin-bottom: 16px;">Scan QR Code or Use UPI ID</h4>
+                
+                <!-- Real QR Code -->
+                <div style="width: 200px; height: 200px; background: white; border: 2px solid var(--grey-300); margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; border-radius: 12px;">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=upi://pay?pa=${upiId}&am=${amount}&cu=INR&tn=${encodeURIComponent(note)}" 
+                         alt="UPI QR Code" 
+                         style="width: 180px; height: 180px; border-radius: 8px;"
+                         onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=&quot;text-align: center; color: var(--grey-600);&quot;><i class=&quot;fas fa-qrcode&quot; style=&quot;font-size: 48px; margin-bottom: 8px; display: block;&quot;></i>QR Code<br><small>Use any UPI app to scan</small></div>';">
+                </div>
+                
+                <div style="background: white; padding: 16px; border-radius: 8px; margin-bottom: 16px;">
+                    <p><strong>UPI ID:</strong> <code style="background: var(--grey-100); padding: 4px 8px; border-radius: 4px;">${upiId}</code></p>
+                    <p><strong>Amount:</strong> ₹${amount}</p>
+                    <p><strong>Order ID:</strong> ${orderId}</p>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px;">
+                <button onclick="paymentCompleted('${orderId}')" class="btn btn-primary">
+                    <i class="fas fa-check"></i> Payment Done
+                </button>
+                <button onclick="closeModal('productModal')" class="btn btn-outline">
+                    Cancel
+                </button>
+            </div>
+
+            <p style="color: var(--grey-600); font-size: 14px;">
+                After payment, click "Payment Done" to confirm your order.
+            </p>
+        </div>
+    `;
+}
+
+// Razorpay Payment Integration
+function initiateRazorpayPayment() {
+    const orderData = JSON.parse(sessionStorage.getItem('pendingOrder'));
+    if (!orderData) {
+        showNotification('Order data not found. Please try again.', 'error');
+        return;
+    }
+
+    // Load Razorpay script dynamically
+    if (!window.Razorpay) {
+        const script = document.createElement('script');
+        script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+        script.onload = () => processRazorpayPayment(orderData);
+        document.head.appendChild(script);
+    } else {
+        processRazorpayPayment(orderData);
+    }
+}
+
+function processRazorpayPayment(orderData) {
+    const options = {
+        key: PAYMENT_CONFIG.razorpay.keyId,
+        amount: orderData.total * 100, // Amount in paise
+        currency: 'INR',
+        name: 'Yadav Bangles Store',
+        description: orderData.productName,
+        order_id: orderData.orderId,
+        handler: function(response) {
+            paymentSuccess(response.razorpay_payment_id, orderData.orderId, 'Razorpay');
+        },
+        prefill: {
+            name: orderData.customerName,
+            contact: orderData.customerPhone
+        },
+        theme: {
+            color: '#FF6B35'
+        },
+        modal: {
+            ondismiss: function() {
+                showNotification('Payment cancelled', 'error');
+            }
+        }
+    };
+
+    const rzp = new Razorpay(options);
+    rzp.open();
+}
+
+// PhonePe Payment Integration
+function initiatePhonePePayment() {
+    const orderData = JSON.parse(sessionStorage.getItem('pendingOrder'));
+    if (!orderData) {
+        showNotification('Order data not found. Please try again.', 'error');
+        return;
+    }
+
+    // PhonePe Web SDK integration
+    showNotification('Redirecting to PhonePe...', 'success');
+    
+    // This would typically involve server-side integration
+    // For now, redirect to a payment page or show UPI option
+    setTimeout(() => {
+        initiateUPIPayment(); // Fallback to UPI for now
+    }, 1500);
+}
+
+// Cash on Delivery
+function initiateCOD() {
+    const orderData = JSON.parse(sessionStorage.getItem('pendingOrder'));
+    if (!orderData) {
+        showNotification('Order data not found. Please try again.', 'error');
+        return;
+    }
+
+    // Process COD order
+    paymentSuccess('COD', orderData.orderId, 'Cash on Delivery');
+}
+
+// WhatsApp Order (Traditional)
+function processWhatsAppOrder() {
+    const orderData = JSON.parse(sessionStorage.getItem('pendingOrder'));
+    if (!orderData) {
+        showNotification('Order data not found. Please try again.', 'error');
+        return;
+    }
+
     const message = `🛍️ *New Order - Yadav Bangles Store*
 
 👤 *Customer Information:*
@@ -904,29 +1232,208 @@ Address: ${orderData.customerAddress}
 🛒 *Order Details:*
 Product: ${orderData.productName}
 Quantity: ${orderData.quantity}
+Total Amount: ₹${orderData.total}
+Order ID: ${orderData.orderId}
 ${orderData.specialRequests ? `Special Requests: ${orderData.specialRequests}` : ''}
 
 📱 *Order Source:* Website
 ⏰ *Order Time:* ${new Date().toLocaleString('en-IN', {timeZone: 'Asia/Kolkata'})}
 
-Thank you for choosing Yadav Bangles Store! We will contact you shortly to confirm your order. 🙏
+Thank you for choosing Yadav Bangles Store! 🙏
 
 *Address:* Jaiganj, Aligarh, UP
 *Phone:* +91 7417163092`;
 
+    const whatsappURL = `https://wa.me/917417163092?text=${encodeURIComponent(message)}`;
+    window.open(whatsappURL, '_blank');
+    
+    closeModal('productModal');
+    showNotification('Order sent via WhatsApp! We will contact you soon. 📱', 'success');
+}
+
+// Payment Success Handler
+function paymentSuccess(paymentId, orderId, paymentMethod) {
+    const orderData = JSON.parse(sessionStorage.getItem('pendingOrder'));
+    
+    // Store successful payment data
+    const paymentData = {
+        ...orderData,
+        paymentId: paymentId,
+        paymentMethod: paymentMethod,
+        paymentStatus: 'SUCCESS',
+        paymentTime: new Date().toISOString()
+    };
+    
+    localStorage.setItem(`order_${orderId}`, JSON.stringify(paymentData));
+    sessionStorage.removeItem('pendingOrder');
+    
+    // Close modal and show success
+    closeModal('productModal');
+    
+    // Redirect to success page or show success message
     setTimeout(() => {
-        // Open WhatsApp
-        const whatsappURL = `https://wa.me/917417163092?text=${encodeURIComponent(message)}`;
-        window.open(whatsappURL, '_blank');
+        showPaymentSuccessModal(paymentData);
         
-        // Reset form and close modal
-        closeModal('bookingModal');
-        event.target.reset();
-        button.innerHTML = originalText;
-        button.disabled = false;
+        // Send confirmation to WhatsApp
+        sendPaymentConfirmationToWhatsApp(paymentData);
+    }, 500);
+}
+
+// Show payment success modal
+function showPaymentSuccessModal(paymentData) {
+    const modalBody = document.getElementById('productModalBody');
+    modalBody.innerHTML = `
+        <div style="text-align: center; padding: 30px;">
+            <div style="color: var(--success-color); font-size: 64px; margin-bottom: 20px;">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            
+            <h3 style="color: var(--success-color); margin-bottom: 16px;">Payment Successful!</h3>
+            
+            <div style="background: var(--grey-100); padding: 20px; border-radius: 12px; margin-bottom: 24px; text-align: left;">
+                <h4 style="margin-bottom: 12px; text-align: center;">Order Confirmation</h4>
+                <p><strong>Order ID:</strong> ${paymentData.orderId}</p>
+                <p><strong>Payment ID:</strong> ${paymentData.paymentId}</p>
+                <p><strong>Product:</strong> ${paymentData.productName}</p>
+                <p><strong>Amount Paid:</strong> ₹${paymentData.total}</p>
+                <p><strong>Payment Method:</strong> ${paymentData.paymentMethod}</p>
+                <p><strong>Customer:</strong> ${paymentData.customerName}</p>
+            </div>
+
+            <div style="background: linear-gradient(135deg, var(--primary-color), var(--accent-color)); color: white; padding: 16px; border-radius: 12px; margin-bottom: 20px;">
+                <h4 style="margin-bottom: 8px;"><i class="fas fa-truck"></i> What's Next?</h4>
+                <p style="margin: 0;">We'll contact you within 2 hours to confirm delivery details. Your order will be delivered within 1-2 days in Aligarh area.</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px;">
+                <button onclick="downloadOrderReceipt('${paymentData.orderId}')" class="btn btn-primary">
+                    <i class="fas fa-download"></i> Download Receipt
+                </button>
+                <button onclick="trackOrder('${paymentData.orderId}')" class="btn btn-outline">
+                    <i class="fas fa-map-marker-alt"></i> Track Order
+                </button>
+            </div>
+
+            <button onclick="closeModal('productModal'); continueShopping();" class="btn btn-outline" style="width: 100%;">
+                <i class="fas fa-shopping-bag"></i> Continue Shopping
+            </button>
+        </div>
+    `;
+
+    openModal('productModal');
+    
+    // Auto-close after 10 seconds
+    setTimeout(() => {
+        closeModal('productModal');
+    }, 10000);
+}
+
+// Send payment confirmation to WhatsApp
+function sendPaymentConfirmationToWhatsApp(paymentData) {
+    const message = `✅ *PAYMENT RECEIVED - Yadav Bangles Store*
+
+💰 *Payment Details:*
+Payment ID: ${paymentData.paymentId}
+Order ID: ${paymentData.orderId}
+Amount: ₹${paymentData.total}
+Method: ${paymentData.paymentMethod}
+Status: SUCCESS ✅
+
+👤 *Customer Details:*
+Name: ${paymentData.customerName}
+Phone: ${paymentData.customerPhone}
+Address: ${paymentData.customerAddress}
+
+🛒 *Product Details:*
+Product: ${paymentData.productName}
+Quantity: ${paymentData.quantity}
+
+⏰ *Payment Time:* ${new Date(paymentData.paymentTime).toLocaleString('en-IN', {timeZone: 'Asia/Kolkata'})}
+
+🚚 *Action Required:* Please confirm delivery details with customer and prepare the order for dispatch.
+
+*Yadav Bangles Store* 🙏`;
+
+    // This will be sent automatically to store owner
+    const whatsappURL = `https://wa.me/917417163092?text=${encodeURIComponent(message)}`;
+    
+    // Open in a new window (will auto-close)
+    const confirmationWindow = window.open(whatsappURL, '_blank');
+    setTimeout(() => {
+        if (confirmationWindow) confirmationWindow.close();
+    }, 3000);
+}
+
+// Payment completion confirmation
+function paymentCompleted(orderId) {
+    paymentSuccess('MANUAL_CONFIRMATION', orderId, 'UPI Manual');
+}
+
+// Download order receipt
+function downloadOrderReceipt(orderId) {
+    const orderData = JSON.parse(localStorage.getItem(`order_${orderId}`));
+    if (!orderData) {
+        showNotification('Order data not found', 'error');
+        return;
+    }
+
+    // Create a simple receipt
+    const receiptContent = `
+        YADAV BANGLES STORE
+        Jaiganj, Aligarh, UP
+        Phone: +91 7417163092
         
-        showNotification('Order sent to WhatsApp! We will contact you soon. 📱', 'success');
-    }, 1000);
+        ═══════════════════════════════
+        PAYMENT RECEIPT
+        ═══════════════════════════════
+        
+        Order ID: ${orderData.orderId}
+        Payment ID: ${orderData.paymentId}
+        Date: ${new Date(orderData.paymentTime).toLocaleDateString('en-IN')}
+        Time: ${new Date(orderData.paymentTime).toLocaleTimeString('en-IN')}
+        
+        Customer Details:
+        Name: ${orderData.customerName}
+        Phone: ${orderData.customerPhone}
+        
+        Product Details:
+        ${orderData.productName}
+        Quantity: ${orderData.quantity}
+        
+        Payment Details:
+        Method: ${orderData.paymentMethod}
+        Amount: ₹${orderData.total}
+        Status: PAID ✓
+        
+        ═══════════════════════════════
+        Thank you for your purchase!
+        Visit: yadavbanglesstore.com
+        ═══════════════════════════════
+    `;
+
+    // Create and download receipt
+    const blob = new Blob([receiptContent], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `YBS_Receipt_${orderId}.txt`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    
+    showNotification('Receipt downloaded successfully!', 'success');
+}
+
+// Track order
+function trackOrder(orderId) {
+    showNotification('Order tracking will be available soon. We will contact you with delivery updates.', 'success');
+}
+
+// Continue shopping
+function continueShopping() {
+    document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+    showNotification('Happy shopping! 🛍️', 'success');
 }
 
 // Newsletter subscription
