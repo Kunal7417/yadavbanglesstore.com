@@ -2554,34 +2554,96 @@ body {
 
 @media (max-width: 480px) {
     .janmashtami-popup-content {
-        width: 100%;
-        margin: 10px;
+        width: 90%;
+        margin: 8vh auto;
         border-radius: 16px;
-        max-height: 95vh;
+        max-height: 70vh;
+        overflow-y: auto;
+        /* Custom scrollbar styling */
+        scrollbar-width: thin;
+        scrollbar-color: rgba(233, 30, 99, 0.3) transparent;
+    }
+    
+    /* Webkit scrollbar styling for Chrome/Safari */
+    .janmashtami-popup-content::-webkit-scrollbar {
+        width: 6px;
+    }
+    
+    .janmashtami-popup-content::-webkit-scrollbar-track {
+        background: transparent;
+        border-radius: 10px;
+    }
+    
+    .janmashtami-popup-content::-webkit-scrollbar-thumb {
+        background: rgba(233, 30, 99, 0.3);
+        border-radius: 10px;
+        transition: background 0.3s ease;
+    }
+    
+    .janmashtami-popup-content::-webkit-scrollbar-thumb:hover {
+        background: rgba(233, 30, 99, 0.5);
     }
     
     .popup-header {
-        padding: 24px 16px 12px;
+        padding: 16px 16px 10px;
     }
     
     .popup-header h2 {
-        font-size: 20px;
+        font-size: 17px;
+        line-height: 1.2;
+        margin-bottom: 4px;
     }
     
     .popup-subtitle {
-        font-size: 14px;
+        font-size: 12px;
+        margin-bottom: 8px;
     }
     
-    .offer-text {
+    .krishna-icon {
         font-size: 28px;
     }
     
+    .offer-text {
+        font-size: 22px;
+        margin-bottom: 8px;
+    }
+    
+    .offer-desc {
+        font-size: 12px;
+        margin-bottom: 12px;
+    }
+    
     .popup-body {
-        padding: 16px;
+        padding: 10px 16px;
+    }
+    
+    .popup-products {
+        margin: 12px 0;
+    }
+    
+    .popup-product img {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .product-name {
+        font-size: 12px;
+        line-height: 1.2;
+    }
+    
+    .product-price {
+        font-size: 11px;
     }
     
     .popup-footer {
-        padding: 0 16px 16px;
+        padding: 0 16px 12px;
+        gap: 6px;
+    }
+    
+    .btn-popup-shop,
+    .btn-popup-whatsapp {
+        font-size: 12px;
+        padding: 10px 14px;
     }
 } 
 
